@@ -1,57 +1,17 @@
-import {useState} from 'react'
 import PersonalInfoForm from './PersonalInfoForm'
 import EducationInfoForm from './EducationInfoForm'
 import ExperienceInfoForm from './ExperienceInfoForm'
 
-const Form = () => {
-
-    const [formData, setFormData] =useState({
-            personalInfo: {
-                name: "",
-                address: "",
-                email: "",
-                phone: ""
-            },
-            educationInfo: {
-                school: "",
-                location: "",
-                degree: "",
-                startDate: "",
-                endDate: ""
-            },
-            experienceInfo: {
-                position: "",
-                company: "",
-                period: "",
-                companyLoc: "",
-                responsibilities: ""
-            }
-        })
-
-    const updatePersonalInfo = (e) => {
-        setFormData({
-            ...formData, personalInfo: {
-                ...formData.personalInfo, [e.target.name] : e.target.value
-            }})
-    }
-
-    const updateEducationInfo = (e) => {
-        setFormData({
-            ...formData, educationInfo: {
-                ...formData.educationInfo, [e.target.name] : e.target.value
-            }})
-    }
-
-    const updateExperienceInfo = (e) => {
-        setFormData({
-            ...formData, experienceInfo: {
-                ...formData.experienceInfo, [e.target.name] : e.target.value
-            }})
-    }
+const Form = ({
+    formData, 
+    // setFormData,
+    updatePersonalInfo,
+    updateEducationInfo,
+    updateExperienceInfo}) => {
 
     return (
 
-        <div className='min-h-screen flex items-center justify-center bg-blue-200'>
+        <div className='flex items-center justify-center'>
             <form className='w-1/2 flex flex-col gap-5'>
 
                 {/* Personal Information Section */}
