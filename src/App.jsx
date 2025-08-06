@@ -52,7 +52,7 @@ const [formData, setFormData] =useState({
 
     return ( 
         // Root container for the application
-        <div className={`flex min-h-screen gap-6 ${showPreview ? 'justify-between' : 'justify-center'}`}>
+        <div className={`flex min-h-screen gap-6 ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
             {/* Form and CV Preview Panel */}
             <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
                 {/* Form and Button  */}
@@ -68,11 +68,13 @@ const [formData, setFormData] =useState({
                 />
 
                 {!showPreview && (
-                    <button type="button"
-                    onClick={() => setShowPreview(true)}
-                    className='bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
-                    Generate CV
-                    </button>
+                    <div className="flex justify-center"> 
+                        <button type="button"
+                        onClick={() => setShowPreview(true)}
+                        className='bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
+                        Generate CV
+                        </button>
+                    </div>
                 )}
                 </div>
             </div>

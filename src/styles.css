@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+    --color-bubbles: #e6f7ff;
+    --color-champagne: #f7e7ce;
+    --color-electric-blue: #005b99;
+    --color-lav-blush: #fff3f3;
+    --color-steel-blue-light: #4682b4;
+    --color-oxford-blue: #001f49;
+
+    --font-custom-serif: 'Times New Roman', Times, serif;
+}
+
+.font-times {
+    font-family: var(--font-custom-serif);
+}

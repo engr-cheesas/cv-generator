@@ -22,7 +22,7 @@ const Form = ({
         <div className='flex items-center justify-center'>
             <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-5`}>
                 {/* Personal Information Section */}
-                <section className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto mt-4"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg">Personal Information</h2>
                         <button type="button"
@@ -41,7 +41,7 @@ const Form = ({
 
                 {/* Education Section  */}
 
-                <section className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg"> Education </h2>
                         <button type="button"
@@ -59,7 +59,7 @@ const Form = ({
                 </section>   
 
                 {/* Experience Section  */}
-                <section className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700">
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-white font-bold text-lg"> Work Experience </h2>
                         <button type="button"

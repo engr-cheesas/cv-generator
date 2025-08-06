@@ -7,9 +7,9 @@ const CVPreview = ({formData}) => {
         // Right-Panel Container
         <div className="flex justify-center items-start w-full h-full"> 
             {/* Paper-like CV */}
-            <div className="bg-white max-w-xl w-full p-8 rounded-lg shadow-lg">
+            <div className="bg-white max-w-xl w-full p-8 rounded-lg shadow-lg font-times">
                 <header className="border-b pb-4 mb-6 flex flex-col items-center justify-center"> 
-                    <h1 className="text-3xl font-bold items-center justify-center pt-4"> {personalInfo.name} </h1>
+                    <h1 className="text-3xl font-bold items-center justify-center pt-4 uppercase"> {personalInfo.name} </h1>
                     <p className="text-sm"> {personalInfo.email} | {personalInfo.phone} | {personalInfo.address} </p>
                 </header>
 

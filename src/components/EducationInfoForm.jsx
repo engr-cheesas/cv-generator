@@ -1,6 +1,6 @@
 const EducationInfoForm = ({educationInfo, onChange}) => {
     return (  
-        <section className='flex flex-col gap-4 bg-gray-100 p-4 rounded-lg'>
+        <section className='flex flex-col gap-4 w-full'>
                     <div>
                         <label>
                             School
