@@ -7,12 +7,13 @@ const Form = ({
     // setFormData,
     updatePersonalInfo,
     updateEducationInfo,
-    updateExperienceInfo}) => {
+    updateExperienceInfo,
+    isPreviewOpen}) => {
 
     return (
 
         <div className='flex items-center justify-center'>
-            <form className='w-1/2 flex flex-col gap-5'>
+            <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-5`}>
 
                 {/* Personal Information Section */}
 

@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import Form from './components/Form'; 
+import CVPreview from './components/CVPreview';
 
 function App () {
 
 const [formData, setFormData] =useState({
             personalInfo: {
-                name: "",
+                name: "Nicole Franchesca",
                 address: "",
                 email: "",
                 phone: ""
@@ -63,6 +64,7 @@ const [formData, setFormData] =useState({
                     updatePersonalInfo={updatePersonalInfo}
                     updateEducationInfo={updateEducationInfo}
                     updateExperienceInfo={updateExperienceInfo}
+                    isPreviewOpen={showPreview}
                 />
 
                 {!showPreview && (
@@ -77,8 +79,9 @@ const [formData, setFormData] =useState({
             
 
             {showPreview && (
-                <div className='w-1/2 bg-gray-100 p-4 rounded shadow-lg'>
-                    <p> CV Preview Panel </p>
+                <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
+                    {/* <p> CV Preview Panel </p> */}
+                    <CVPreview formData={formData} />
                 </div>
             )}
         </div>
