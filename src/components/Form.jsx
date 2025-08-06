@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PersonalInfoForm from './PersonalInfoForm'
 import EducationInfoForm from './EducationInfoForm'
 import ExperienceInfoForm from './ExperienceInfoForm'
@@ -10,31 +11,70 @@ const Form = ({
     updateExperienceInfo,
     isPreviewOpen}) => {
 
+    const [openSection, setOpenSection] = useState(null);
+    
+    const toggleSection = (section) => {
+        setOpenSection((prev) => (prev === section ? null : section))
+    }
+
     return (
 
         <div className='flex items-center justify-center'>
             <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-5`}>
-
                 {/* Personal Information Section */}
+                <section className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700"> 
+                    <div className='flex items-center justify-between'> 
+                        <h2 className="text-white font-bold text-lg">Personal Information</h2>
+                        <button type="button"
+                            onClick={() => toggleSection('personalInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'personalInfo' ? '▲' : '▼'}
+                        </button>
+                    </div>
+                    {openSection === 'personalInfo' && (
+                        <PersonalInfoForm 
+                            personalInfo={formData.personalInfo} 
+                            onChange={updatePersonalInfo}
+                        />
+                    )}
+                </section>
 
-                    <PersonalInfoForm 
-                        personalInfo={formData.personalInfo} 
-                        onChange={updatePersonalInfo}
-                    />
-                    
                 {/* Education Section  */}
 
-                    <EducationInfoForm 
-                        educationInfo={formData.educationInfo} 
-                        onChange={updateEducationInfo}
-                    />
+                <section className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700"> 
+                    <div className='flex items-center justify-between'> 
+                        <h2 className="text-white font-bold text-lg"> Education </h2>
+                        <button type="button"
+                            onClick={() => toggleSection('educationInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'educationInfo' ? '▲' : '▼'}
+                        </button>
+                    </div>
+                    {openSection === 'educationInfo' &&
+                        <EducationInfoForm 
+                            educationInfo={formData.educationInfo} 
+                            onChange={updateEducationInfo}
+                        />
+                    }
+                </section>   
 
                 {/* Experience Section  */}
-
-                    <ExperienceInfoForm 
+                <section className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700">
+                    <div className='flex items-center justify-between'>
+                        <h2 className="text-white font-bold text-lg"> Work Experience </h2>
+                        <button type="button"
+                            onClick={() => toggleSection('experienceInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'experienceInfo' ? '▲' : '▼'} 
+                        </button>
+                    </div>
+                    {openSection === 'experienceInfo' && (
+                        <ExperienceInfoForm 
                         experienceInfo={formData.experienceInfo} 
                         onChange={updateExperienceInfo}
-                    />
+                        />
+                    )}
+                </section>
             </form>
         </div>
       );

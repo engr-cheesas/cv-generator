@@ -34,7 +34,7 @@ const CVPreview = ({formData}) => {
                 <section>
                     <h2 className="text-xl font-semibold"> Work Experience </h2>
                     <p className="text-md font-semibold ml-2 mt-0.5"> {experienceInfo.position} </p>
-                    <div className="flex justify-between items-center">
+                    <div>
                         <span> 
                             <span className="ml-2 text-sm font-medium"> {experienceInfo.company} </span>
                             <span className="text-sm font-medium"> {experienceInfo.companyLoc} </span>
