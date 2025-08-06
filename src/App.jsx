@@ -6,7 +6,7 @@ function App () {
 
 const [formData, setFormData] =useState({
             personalInfo: {
-                name: "Nicole Franchesca",
+                name: "",
                 address: "",
                 email: "",
                 phone: ""

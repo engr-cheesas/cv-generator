@@ -1,4 +1,4 @@
-const ExperienceInfoForm = (experienceInfo, onChange) => {
+const ExperienceInfoForm = ({experienceInfo, onChange}) => {
     return (  
         <section className='flex flex-col gap-4 bg-gray-100 p-4 rounded-lg'>
                     <div> 
