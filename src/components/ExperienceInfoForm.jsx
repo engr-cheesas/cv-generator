@@ -1,4 +1,4 @@
-const ExperienceInfoForm = ({experienceInfo, onChange, addRole}) => {
+const ExperienceInfoForm = ({experienceInfo, onChange, addRole, deleteRole}) => {
 
     console.log(experienceInfo)
     return (  
@@ -51,6 +51,24 @@ const ExperienceInfoForm = ({experienceInfo, onChange, addRole}) => {
                 }`}> 
                 + </button>
             </div>
+
+            {experienceInfo.roles.length > 0 && (
+                <div className="flex flex-col gap-2 mt-1"> 
+                {experienceInfo.roles.map((role, index) => 
+                    <div key={index} className="flex items-center gap-2"> 
+                        <input type="text"
+                        value={role}
+                        readOnly
+                        className="bg-bubbles border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 cursor-not-allowed">
+                        </input>
+                        <button type="button"
+                        onClick={() => deleteRole(index)}
+                        className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white">
+                            ✕
+                        </button>
+                    </div>
+                )}
+                </div>)}
         </div>
 
     );

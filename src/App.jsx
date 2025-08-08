@@ -23,7 +23,7 @@ const [formData, setFormData] =useState({
                 company: "",
                 period: "",
                 companyLoc: "",
-                roles: [""],
+                roles: [],
                 inputRole: ""
             }
         })
@@ -86,7 +86,16 @@ const [formData, setFormData] =useState({
             }}
         })
     }
-
+    
+    const deleteRole = (index) => {
+        setFormData((prev) => ({
+            ...prev,
+            experienceInfo: {
+                ...prev.experienceInfo,
+                roles: prev.experienceInfo.roles.filter((_, i) => i !== index)
+            }
+        }))
+    }
 
     const [showPreview, setShowPreview] = useState(false);
 
@@ -106,6 +115,7 @@ const [formData, setFormData] =useState({
                     updateExperienceInfo={updateExperienceInfo}
                     isPreviewOpen={showPreview}
                     addRole={addRole}
+                    deleteRole={deleteRole}
                 />
 
                 {!showPreview && (
