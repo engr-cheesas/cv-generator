@@ -10,12 +10,15 @@ const Form = ({
     // setFormData,
     updateSummary,
     updatePersonalInfo,
-    updateSkill,
+    updateSkillInfo,
     updateEducationInfo,
     updateExperienceInfo,
     isPreviewOpen,
     addRole,
-    deleteRole}) => {
+    deleteRole,
+    addSkill,
+    deleteSkill,
+    toggleEditSkill}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -80,7 +83,10 @@ const Form = ({
                     {openSection === 'skillInfo' && (
                         <SkillSection 
                             skillInfo={formData.skillInfo} 
-                            onChange={updateSkill}
+                            onChange={updateSkillInfo}
+                            addSkill={addSkill}
+                            deleteSkill={deleteSkill}
+                            toggleEditSkill={toggleEditSkill}
                         />
                     )}
                 </section>

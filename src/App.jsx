@@ -32,7 +32,8 @@ const [formData, setFormData] =useState({
             },
             skillInfo: [{
                 skillCategory: "",
-                skillName: ""
+                skillName: "",
+                isEditing: true
             }]
         })
 
@@ -50,7 +51,7 @@ const [formData, setFormData] =useState({
             }})
     }
 
-    const updateSkill = (index, field, value) => {
+    const updateSkillInfo = (index, field, value) => {
         const updatedSkills = [...formData.skillInfo];
         updatedSkills[index] = {
             ...updatedSkills[index],
@@ -121,6 +122,39 @@ const [formData, setFormData] =useState({
         }))
     }
 
+    const addSkill = () => {
+        setFormData((prev) => {
+            // To make existing skills not editable
+            const updatedSkills = prev.skillInfo.map(skill => 
+            ({...skill, isEditing: false})
+            )
+
+            // Add new editable skill
+            updatedSkills.push({
+                skillCategory: "",
+                skillName: "",
+                isEditing: true
+            })
+            return {...prev, skillInfo: updatedSkills}
+        })
+    }
+
+    const deleteSkill = (index) => {
+        setFormData(prev => ({
+            ...prev, skillInfo: prev.skillInfo.filter((_, i) => i !== index)
+        }))
+    }
+
+    const toggleEditSkill = (index) => {
+        setFormData((prev) => {
+            const updatedSkills = prev.skillInfo.map((skill, i) => ({
+                ...skill, 
+                isEditing: i === index ? true : skill.isEditing
+            }))
+            return {...prev, skillInfo: updatedSkills}
+        })
+    }
+
     const [showPreview, setShowPreview] = useState(false);
 
     return ( 
@@ -140,7 +174,10 @@ const [formData, setFormData] =useState({
                         updatePersonalInfo={updatePersonalInfo}
                         updateEducationInfo={updateEducationInfo}
                         updateExperienceInfo={updateExperienceInfo}
-                        updateSkill={updateSkill}
+                        updateSkillInfo={updateSkillInfo}
+                        addSkill={addSkill}
+                        deleteSkill={deleteSkill}
+                        toggleEditSkill={toggleEditSkill}
                         isPreviewOpen={showPreview}
                         addRole={addRole}
                         deleteRole={deleteRole}
