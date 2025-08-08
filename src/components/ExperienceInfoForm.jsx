@@ -1,4 +1,4 @@
-const ExperienceInfoForm = ({experienceInfo, onChange, addResponsibility}) => {
+const ExperienceInfoForm = ({experienceInfo, onChange, addRole}) => {
     return (  
         <div className='flex flex-col gap-4 w-full mt-4'>
             <input type='text'
@@ -33,14 +33,14 @@ const ExperienceInfoForm = ({experienceInfo, onChange, addResponsibility}) => {
 
             <div className="flex gap-2"> 
                 <input type='text'
-                    placeholder='Responsibilities'
-                    value={experienceInfo.responsibilities}
-                    name="responsibilities"
+                    placeholder='Roles'
+                    value={experienceInfo.roles}
+                    name="Roles"
                     onChange={onChange}
                     className="bg-gray-200 border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"/>
                     
                 <button type="button"
-                onClick={addResponsibility}
+                onClick={addRole}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> 
                 + </button>
             </div>

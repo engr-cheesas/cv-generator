@@ -23,7 +23,8 @@ const [formData, setFormData] =useState({
                 company: "",
                 period: "",
                 companyLoc: "",
-                responsibilities: [""]
+                roles: [""],
+                inputRole: ""
             }
         })
 
@@ -44,12 +45,12 @@ const [formData, setFormData] =useState({
     const updateExperienceInfo = (e, index=null) => {
         const {name, value} = e.target;
 
-        if (name === 'responsibilities' && index !== null) {
-            const updatedResponsibilities = [...formData.experienceInfo.responsibilities];
-            updatedResponsibilities[index] = value;
+        if (name === 'roles' && index !== null) {
+            const updatedroles = [...formData.experienceInfo.roles];
+            updatedroles[index] = value;
 
             setFormData({...formData, experienceInfo: {...formData.experienceInfo,
-                responsibilities: updatedResponsibilities
+                roles: updatedroles
             }});
         }
         else {
@@ -64,10 +65,10 @@ const [formData, setFormData] =useState({
             }})
     }
 
-    const addResponsibility = () => {
+    const addRole = () => {
         setFormData({...formData, experienceInfo: 
-            {...formData.experienceInfo, responsibilities: 
-                [...formData.experienceInfo.responsibilities, ""]
+            {...formData.experienceInfo, roles: 
+                [...formData.experienceInfo.roles, ""]
             }})
     }
 
@@ -88,7 +89,7 @@ const [formData, setFormData] =useState({
                     updateEducationInfo={updateEducationInfo}
                     updateExperienceInfo={updateExperienceInfo}
                     isPreviewOpen={showPreview}
-                    addResponsibility={addResponsibility}
+                    addRole={addRole}
                 />
 
                 {!showPreview && (
