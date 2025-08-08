@@ -1,19 +1,24 @@
 import { useState } from 'react';
-import ProfSummary from './ProfSummary';
-import PersonalInfoForm from './PersonalInfoForm'
-import EducationInfoForm from './EducationInfoForm'
-import ExperienceInfoForm from './ExperienceInfoForm'
+import ProfSummary from './SummarySection';
+import PersonalInfoForm from './PersonalSection'
+import EducationInfoForm from './EducationSection'
+import ExperienceInfoForm from './ExperienceSection'
+import SkillSection from './SkillSection';
 
 const Form = ({
     formData, 
     // setFormData,
     updateSummary,
     updatePersonalInfo,
+    updateSkillInfo,
     updateEducationInfo,
     updateExperienceInfo,
     isPreviewOpen,
     addRole,
-    deleteRole}) => {
+    deleteRole,
+    addSkill,
+    deleteSkill,
+    toggleEditSkill}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -23,11 +28,11 @@ const Form = ({
 
     return (
 
-        <div className='flex items-center justify-center'>
-            <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-5`}>
+        <div className='flex justify-center w-full'>
+            <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-2 px-4`}>
 
                 {/* Personal Information Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto mt-4"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mt-4"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg">Personal Information</h2>
                         <button type="button"
@@ -45,7 +50,7 @@ const Form = ({
                 </section>
 
                 {/* Professional Summary Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg"> Professional Summary</h2>
                         <button type="button"
@@ -62,10 +67,33 @@ const Form = ({
                         />
                     )}
                 </section>
+                
+                {/* Skills Section */}
+
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl">
+                    <div className='flex items-center justify-between'>
+                        <h2 className="text-white font-bold text-lg">Skills</h2>
+                        <button type="button"
+                            onClick={() => toggleSection('skillInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'skillInfo' ? '▲' : '▼'}
+                        </button>
+                    </div>
+
+                    {openSection === 'skillInfo' && (
+                        <SkillSection 
+                            skillInfo={formData.skillInfo} 
+                            onChange={updateSkillInfo}
+                            addSkill={addSkill}
+                            deleteSkill={deleteSkill}
+                            toggleEditSkill={toggleEditSkill}
+                        />
+                    )}
+                </section>
 
                 {/* Education Section  */}
 
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg"> Education </h2>
                         <button type="button"

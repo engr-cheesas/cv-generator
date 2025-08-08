@@ -1,4 +1,4 @@
-const PersonalInfoForm = ({personalInfo, onChange}) => {
+const PersonalSection = ({personalInfo, onChange}) => {
     return (
         <div className='flex flex-col gap-4 w-full mt-4'>
             <input
@@ -41,4 +41,4 @@ const PersonalInfoForm = ({personalInfo, onChange}) => {
     );
 }
 
-export default PersonalInfoForm;
+export default PersonalSection;
