@@ -1,5 +1,9 @@
 const CVPreview = ({formData}) => {
-    const {personalInfo, educationInfo, experienceInfo} = formData
+    const {
+        profSummary,
+        personalInfo, 
+        educationInfo, 
+        experienceInfo} = formData
 
     console.log(experienceInfo)
 
@@ -12,6 +16,16 @@ const CVPreview = ({formData}) => {
                     <h1 className="text-3xl font-bold items-center justify-center pt-4 uppercase"> {personalInfo.name} </h1>
                     <p className="text-sm"> {personalInfo.email} | {personalInfo.phone} | {personalInfo.address} </p>
                 </header>
+
+                {/* Professional Summary Section */}
+
+                <section className="border-b pb-4 mb-6">
+                    <h2 className="text-xl font-semibold"> Professional Summary </h2>
+                        <div className="flex justify-between items-center"> 
+                            <p className="text-sm text-justify"> {profSummary.summary} </p>
+                        </div>
+                        <p className="text-sm italic text-gray-400 ml-6"> {educationInfo.degree} </p>
+                </section>
 
                 {/* Education Section */}
 

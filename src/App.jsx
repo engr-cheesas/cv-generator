@@ -5,6 +5,9 @@ import CVPreview from './components/CVPreview';
 function App () {
 
 const [formData, setFormData] =useState({
+            profSummary: {
+                summary: ""
+            },
             personalInfo: {
                 name: "",
                 address: "",
@@ -27,6 +30,13 @@ const [formData, setFormData] =useState({
                 inputRole: ""
             }
         })
+
+    const updateSummary = (e) => {
+        setFormData({
+            ...formData, profSummary: {
+                ...formData.profSummary, [e.target.name] : e.target.value
+            }})
+    }
 
     const updatePersonalInfo = (e) => {
         setFormData({
@@ -110,6 +120,7 @@ const [formData, setFormData] =useState({
                     formData={formData} 
                     setFormData={setFormData}
                     onGenerate = {() => {setShowPreview(true)}}
+                    updateSummary={updateSummary}
                     updatePersonalInfo={updatePersonalInfo}
                     updateEducationInfo={updateEducationInfo}
                     updateExperienceInfo={updateExperienceInfo}
