@@ -9,7 +9,8 @@ const Form = ({
     updatePersonalInfo,
     updateEducationInfo,
     updateExperienceInfo,
-    isPreviewOpen}) => {
+    isPreviewOpen,
+    addResponsibility}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -72,6 +73,7 @@ const Form = ({
                         <ExperienceInfoForm 
                         experienceInfo={formData.experienceInfo} 
                         onChange={updateExperienceInfo}
+                        addResponsibility={addResponsibility}
                         />
                     )}
                 </section>

@@ -1,4 +1,4 @@
-const ExperienceInfoForm = ({experienceInfo, onChange}) => {
+const ExperienceInfoForm = ({experienceInfo, onChange, addResponsibility}) => {
     return (  
         <div className='flex flex-col gap-4 w-full mt-4'>
             <input type='text'
@@ -31,13 +31,21 @@ const ExperienceInfoForm = ({experienceInfo, onChange}) => {
                 className="bg-gray-200 border border-gray-300 rounded-md px-4 py-2 w-1/2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"/>
             </div>
 
-            <input type='text'
-                placeholder='Responsibilities'
-                value={experienceInfo.responsibilities}
-                name="responsibilities"
-                onChange={onChange}
-                className="bg-gray-200 border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"/>
-                </div>
+            <div className="flex gap-2"> 
+                <input type='text'
+                    placeholder='Responsibilities'
+                    value={experienceInfo.responsibilities}
+                    name="responsibilities"
+                    onChange={onChange}
+                    className="bg-gray-200 border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"/>
+                    
+                <button type="button"
+                onClick={addResponsibility}
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> 
+                + </button>
+            </div>
+        </div>
+
     );
 }
 
