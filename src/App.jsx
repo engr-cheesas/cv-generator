@@ -45,32 +45,48 @@ const [formData, setFormData] =useState({
     const updateExperienceInfo = (e, index=null) => {
         const {name, value} = e.target;
 
-        if (name === 'roles' && index !== null) {
-            const updatedroles = [...formData.experienceInfo.roles];
-            updatedroles[index] = value;
+        setFormData((prev) => {
+            if (name === 'roles' && index !== null) {
+                const updatedRoles = [...prev.experienceInfo.roles];
+                updatedRoles[index] = value;
 
-            setFormData({...formData, experienceInfo: {...formData.experienceInfo,
-                roles: updatedroles
-            }});
-        }
-        else {
-            setFormData({
-                ...formData, experienceInfo: {...formData.experienceInfo, [name] : value}
-            })
+            return {
+                ...prev, 
+                experienceInfo: {
+                    ...prev.experienceInfo, 
+                    roles: updatedRoles
+                }
+            }
         }
 
-        setFormData({
-            ...formData, experienceInfo: {
-                ...formData.experienceInfo, [e.target.name] : e.target.value
-            }})
+        return {
+            ...prev, 
+                experienceInfo: {
+                    ...prev.experienceInfo, 
+                    [name] : value
+                }
+        }
+        })
+        
     }
 
     const addRole = () => {
-        setFormData({...formData, experienceInfo: 
-            {...formData.experienceInfo, roles: 
-                [...formData.experienceInfo.roles, ""]
-            }})
+        setFormData(prev => {
+            if (!prev.experienceInfo.inputRole.trim()) return prev;
+
+            return {
+                ...prev, 
+                experienceInfo: {
+                ...prev.experienceInfo, 
+                roles: [
+                    ...prev.experienceInfo.roles,
+                    prev.experienceInfo.inputRole.trim()
+                ],
+                inputRole: ""
+            }}
+        })
     }
+
 
     const [showPreview, setShowPreview] = useState(false);
 

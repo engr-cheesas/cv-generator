@@ -34,13 +34,20 @@ const CVPreview = ({formData}) => {
                 <section>
                     <h2 className="text-xl font-semibold"> Work Experience </h2>
                     <p className="text-md font-semibold ml-2 mt-0.5"> {experienceInfo.position} </p>
-                    <div>
+                    <div className="flex justify-between">
                         <span> 
                             <span className="ml-2 text-sm font-medium"> {experienceInfo.company} </span>
                             <span className="text-sm font-medium"> {experienceInfo.companyLoc} </span>
                         </span>
                         <span className="text-sm text-gray-500"> {experienceInfo.period} </span>
                     </div>
+
+                    {experienceInfo.roles && experienceInfo.roles.length > 0 && (
+                        <ul className="list-disc ml-8 mt-1"> 
+                            {experienceInfo.roles.map((role, index) => 
+                            <li key={index} className="text-sm"> {role} </li>)}
+                        </ul>
+                    )}
                 </section>
             </div>
         </div>

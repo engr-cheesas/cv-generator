@@ -1,4 +1,6 @@
 const ExperienceInfoForm = ({experienceInfo, onChange, addRole}) => {
+
+    console.log(experienceInfo)
     return (  
         <div className='flex flex-col gap-4 w-full mt-4'>
             <input type='text'
@@ -33,15 +35,20 @@ const ExperienceInfoForm = ({experienceInfo, onChange, addRole}) => {
 
             <div className="flex gap-2"> 
                 <input type='text'
-                    placeholder='Roles'
-                    value={experienceInfo.roles}
-                    name="Roles"
+                    placeholder='Role'
+                    value={experienceInfo.inputRole}
+                    name="inputRole"
                     onChange={onChange}
                     className="bg-gray-200 border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"/>
                     
                 <button type="button"
                 onClick={addRole}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> 
+                disabled={!experienceInfo.inputRole.trim()}
+                className={`px-4 py-2 rounded text-white transition 
+                ${experienceInfo.inputRole.trim() 
+                    ? "bg-blue-500 hover:bg-blue-600"
+                    : "bg-gray-400 cursor-not-allowed"
+                }`}> 
                 + </button>
             </div>
         </div>
