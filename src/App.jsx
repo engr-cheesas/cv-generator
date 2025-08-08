@@ -111,7 +111,7 @@ const [formData, setFormData] =useState({
 
     return ( 
         // Root container for the application
-        <div className={`flex min-h-screen gap-6 ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
+        <div className={`flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
             {/* Form and CV Preview Panel */}
             <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
                 {/* Form and Button  */}
