@@ -29,7 +29,11 @@ const [formData, setFormData] =useState({
                 companyLoc: "",
                 roles: [],
                 inputRole: ""
-            }
+            },
+            skillInfo: [{
+                skillCategory: "",
+                skillName: ""
+            }]
         })
 
     const updateSummary = (e) => {
@@ -44,6 +48,15 @@ const [formData, setFormData] =useState({
             ...formData, personalInfo: {
                 ...formData.personalInfo, [e.target.name] : e.target.value
             }})
+    }
+
+    const updateSkill = (index, field, value) => {
+        const updatedSkills = [...formData.skillInfo];
+        updatedSkills[index] = {
+            ...updatedSkills[index],
+            [field]:value
+        };
+        setFormData({...formData, skillInfo: updatedSkills})
     }
 
     const updateEducationInfo = (e) => {
@@ -127,6 +140,7 @@ const [formData, setFormData] =useState({
                         updatePersonalInfo={updatePersonalInfo}
                         updateEducationInfo={updateEducationInfo}
                         updateExperienceInfo={updateExperienceInfo}
+                        updateSkill={updateSkill}
                         isPreviewOpen={showPreview}
                         addRole={addRole}
                         deleteRole={deleteRole}

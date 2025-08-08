@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import ProfSummary from './ProfSummary';
-import PersonalInfoForm from './PersonalInfoForm'
-import EducationInfoForm from './EducationInfoForm'
-import ExperienceInfoForm from './ExperienceInfoForm'
+import ProfSummary from './SummarySection';
+import PersonalInfoForm from './PersonalSection'
+import EducationInfoForm from './EducationSection'
+import ExperienceInfoForm from './ExperienceSection'
+import SkillSection from './SkillSection';
 
 const Form = ({
     formData, 
     // setFormData,
     updateSummary,
     updatePersonalInfo,
+    updateSkill,
     updateEducationInfo,
     updateExperienceInfo,
     isPreviewOpen,
@@ -59,6 +61,26 @@ const Form = ({
                         <ProfSummary 
                             profSummary={formData.profSummary} 
                             onChange={updateSummary}
+                        />
+                    )}
+                </section>
+                
+                {/* Skills Section */}
+
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl">
+                    <div className='flex items-center justify-between'>
+                        <h2 className="text-white font-bold text-lg">Skills</h2>
+                        <button type="button"
+                            onClick={() => toggleSection('skillInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'skillInfo' ? '▲' : '▼'}
+                        </button>
+                    </div>
+
+                    {openSection === 'skillInfo' && (
+                        <SkillSection 
+                            skillInfo={formData.skillInfo} 
+                            onChange={updateSkill}
                         />
                     )}
                 </section>

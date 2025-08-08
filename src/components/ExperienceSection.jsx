@@ -1,4 +1,4 @@
-const ExperienceInfoForm = ({experienceInfo, onChange, addRole, deleteRole}) => {
+const ExperienceSection = ({experienceInfo, onChange, addRole, deleteRole}) => {
 
     console.log(experienceInfo)
     return (  
@@ -74,4 +74,4 @@ const ExperienceInfoForm = ({experienceInfo, onChange, addRole, deleteRole}) => 
     );
 }
 
-export default ExperienceInfoForm;
+export default ExperienceSection;

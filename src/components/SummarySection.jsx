@@ -1,4 +1,4 @@
-const ProfSummary = ({profSummary, onChange}) => {
+const SummarySection = ({profSummary, onChange}) => {
     return ( 
         <div> 
             <textarea 
@@ -13,4 +13,4 @@ const ProfSummary = ({profSummary, onChange}) => {
     );
 }
 
-export default ProfSummary;
+export default SummarySection;

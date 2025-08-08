@@ -1,4 +1,4 @@
-const EducationInfoForm = ({educationInfo, onChange}) => {
+const EducationSection = ({educationInfo, onChange}) => {
     return (  
         <div className='flex flex-col gap-4 w-full mt-4'>
         
@@ -43,4 +43,4 @@ const EducationInfoForm = ({educationInfo, onChange}) => {
     );
 }
 
-export default EducationInfoForm;
+export default EducationSection;
