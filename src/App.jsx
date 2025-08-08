@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Navbar from './components/Navbar';
 import Form from './components/Form'; 
 import CVPreview from './components/CVPreview';
 
@@ -111,43 +112,46 @@ const [formData, setFormData] =useState({
 
     return ( 
         // Root container for the application
-        <div className={`flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
-            {/* Form and CV Preview Panel */}
-            <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
-                {/* Form and Button  */}
-                <div className='flex flex-col gap-4 w-full'> 
-                    <Form 
-                    formData={formData} 
-                    setFormData={setFormData}
-                    onGenerate = {() => {setShowPreview(true)}}
-                    updateSummary={updateSummary}
-                    updatePersonalInfo={updatePersonalInfo}
-                    updateEducationInfo={updateEducationInfo}
-                    updateExperienceInfo={updateExperienceInfo}
-                    isPreviewOpen={showPreview}
-                    addRole={addRole}
-                    deleteRole={deleteRole}
-                />
+        <div className='flex flex-col'>
+            <Navbar />
+            <div className={`pt-15 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
+                {/* Form and CV Preview Panel */}
+                <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
+                    {/* Form and Button  */}
+                    <div className='flex flex-col gap-4 w-full'> 
+                        <Form 
+                        formData={formData} 
+                        setFormData={setFormData}
+                        onGenerate = {() => {setShowPreview(true)}}
+                        updateSummary={updateSummary}
+                        updatePersonalInfo={updatePersonalInfo}
+                        updateEducationInfo={updateEducationInfo}
+                        updateExperienceInfo={updateExperienceInfo}
+                        isPreviewOpen={showPreview}
+                        addRole={addRole}
+                        deleteRole={deleteRole}
+                    />
 
-                {!showPreview && (
-                    <div className="flex justify-center"> 
-                        <button type="button"
-                        onClick={() => setShowPreview(true)}
-                        className='bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
-                        Generate CV
-                        </button>
+                    {!showPreview && (
+                        <div className="flex justify-center"> 
+                            <button type="button"
+                            onClick={() => setShowPreview(true)}
+                            className='bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
+                            Generate CV
+                            </button>
+                        </div>
+                    )}
+                    </div>
+                </div>
+                
+
+                {showPreview && (
+                    <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
+                        {/* <p> CV Preview Panel </p> */}
+                        <CVPreview formData={formData} />
                     </div>
                 )}
-                </div>
             </div>
-            
-
-            {showPreview && (
-                <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
-                    {/* <p> CV Preview Panel </p> */}
-                    <CVPreview formData={formData} />
-                </div>
-            )}
         </div>
     );
 }
