@@ -25,16 +25,15 @@ const CVPreview = ({formData}) => {
                         <div className="flex justify-between items-center"> 
                             <p className="text-sm text-justify"> {profSummary.summary} </p>
                         </div>
-                        <p className="text-sm italic text-gray-400 ml-6"> {educationInfo.degree} </p>
                 </section>
 
                 {/* Skill Section */}
 
                 <section className="border-b pb-4 mb-6">
                     <h2 className="text-xl font-semibold"> Skills </h2>
-                        <div className="flex justify-between items-center"> 
+                        {/* <div className="flex justify-between items-center"> 
                             <p className="text-sm text-justify"> {profSummary.summary} </p>
-                        </div>
+                        </div> */}
                         
                         {formData.skillInfo && formData.skillInfo.length > 0 && (
                         <ul className="list-disc ml-8 mt-1">
