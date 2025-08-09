@@ -22,14 +22,14 @@ const [formData, setFormData] =useState({
                 startDate: "",
                 endDate: ""
             },
-            experienceInfo: {
+            experienceInfo: [{
                 position: "",
                 company: "",
                 period: "",
                 companyLoc: "",
                 roles: [],
                 inputRole: ""
-            },
+            }],
             skillInfo: [{
                 skillCategory: "",
                 skillName: "",
@@ -67,58 +67,82 @@ const [formData, setFormData] =useState({
             }})
     }
 
-    const updateExperienceInfo = (e, index=null) => {
+    const updateExperienceInfo = (e, expIndex, roleIndex=null) => {
         const {name, value} = e.target;
 
         setFormData((prev) => {
-            if (name === 'roles' && index !== null) {
-                const updatedRoles = [...prev.experienceInfo.roles];
-                updatedRoles[index] = value;
+            const updatedExperiences = [...prev.experienceInfo];
 
-            return {
-                ...prev, 
-                experienceInfo: {
-                    ...prev.experienceInfo, 
-                    roles: updatedRoles
+            if (name === 'roles' && roleIndex !== null) {
+                updatedExperiences[expIndex].roles[roleIndex] = value;
+            } else {
+                updatedExperiences[expIndex] = {
+                    ...updatedExperiences[expIndex], 
+                    [name]: value
                 }
             }
-        }
 
-        return {
-            ...prev, 
-                experienceInfo: {
-                    ...prev.experienceInfo, 
-                    [name] : value
-                }
-        }
-        })
-        
+
+            return {
+                ...prev, experienceInfo: updatedExperiences
+            }
+        })  
     }
 
-    const addRole = () => {
+    const addRole = (expIndex) => {
         setFormData(prev => {
-            if (!prev.experienceInfo.inputRole.trim()) return prev;
+            const updatedExperiences = [...prev.experienceInfo];
+
+            if (!updatedExperiences[expIndex]?.inputRole?.trim()) return prev;
+
+            updatedExperiences[expIndex] = {
+                ...updatedExperiences[expIndex],
+                roles: [...updatedExperiences[expIndex].roles, updatedExperiences[expIndex].inputRole.trim()],
+                inputRole: ""
+            }
 
             return {
                 ...prev, 
-                experienceInfo: {
-                ...prev.experienceInfo, 
-                roles: [
-                    ...prev.experienceInfo.roles,
-                    prev.experienceInfo.inputRole.trim()
-                ],
-                inputRole: ""
-            }}
+                experienceInfo: updatedExperiences
+            }
         })
     }
     
-    const deleteRole = (index) => {
+    const deleteRole = (roleIndex, expIndex) => {
+        setFormData(prev => {
+            const updatedExperiences = [...prev.experienceInfo];
+
+            updatedExperiences[expIndex] = {
+                ...updatedExperiences[expIndex],
+                roles: updatedExperiences[expIndex].roles.filter((_, i) => i !== roleIndex)
+            }
+
+            return {
+                ...prev,
+                experienceInfo: updatedExperiences
+            }
+        })
+    }
+
+    const addExperience = () => {
         setFormData((prev) => ({
             ...prev,
-            experienceInfo: {
+            experienceInfo: [
                 ...prev.experienceInfo,
-                roles: prev.experienceInfo.roles.filter((_, i) => i !== index)
-            }
+                {
+                    position: "", 
+                    company: "", 
+                    period: "", 
+                    companyLoc: "", 
+                    roles: [], 
+                    inputRole: ""}
+            ]
+        }))
+    }
+
+    const deleteExperience = (expIndex) => {
+        setFormData(prev => ({
+            ...prev, experienceInfo: prev.experienceInfo.filter((_, i) => i !== expIndex)
         }))
     }
 
@@ -181,6 +205,8 @@ const [formData, setFormData] =useState({
                         isPreviewOpen={showPreview}
                         addRole={addRole}
                         deleteRole={deleteRole}
+                        addExperience={addExperience}
+                        deleteExperience={deleteExperience}
                     />
 
                     {!showPreview && (
