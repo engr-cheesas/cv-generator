@@ -18,7 +18,9 @@ const Form = ({
     deleteRole,
     addSkill,
     deleteSkill,
-    toggleEditSkill}) => {
+    toggleEditSkill,
+    addExperience,
+    deleteExperience}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -121,12 +123,30 @@ const Form = ({
                         </button>
                     </div>
                     {openSection === 'experienceInfo' && (
-                        <ExperienceInfoForm 
-                        experienceInfo={formData.experienceInfo} 
-                        onChange={updateExperienceInfo}
-                        addRole={addRole}
-                        deleteRole={deleteRole}
-                        />
+                        <div>
+                            {formData.experienceInfo.map((exp, index) => (
+                                <div key={index} className="gap-2 rounded flex flex-col"> 
+                                    <ExperienceInfoForm 
+                                    key={index}
+                                    experienceInfo={formData.experienceInfo} 
+                                    onChange={updateExperienceInfo}
+                                    addRole={addRole}
+                                    deleteRole={deleteRole}
+                                    addExperience={addExperience}
+                                    deleteExperience={deleteExperience}/>
+                                    <button type="button"
+                                        onClick={() => deleteExperience(index)}
+                                        className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                        Delete Experience
+                                    </button>
+                                </div>
+                            ))}
+                            <button type="button"
+                                onClick={addExperience}
+                                className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-4">
+                                Add Experience
+                            </button>
+                        </div>
                     )}
                 </section>
             </form>
