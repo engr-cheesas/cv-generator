@@ -12,16 +12,16 @@ const CVPreview = ({formData}) => {
         // Right-Panel Container
         <div className="flex justify-center items-start w-full h-full"> 
             {/* Paper-like CV */}
-            <div className="bg-white max-w-xl w-full p-8 rounded-lg shadow-lg font-times">
-                <header className="border-b pb-4 mb-6 flex flex-col items-center justify-center"> 
-                    <h1 className="text-3xl font-bold items-center justify-center pt-4 uppercase"> {personalInfo.name} </h1>
+            <div className="bg-white max-w-xl w-full p-6 shadow-lg font-times">
+                <header className="pb-4 flex flex-col items-center justify-center"> 
+                    <h1 className="text-3xl font-bold items-center justify-center pt-2 uppercase"> {personalInfo.name} </h1>
                     <p className="text-sm"> {personalInfo.email} | {personalInfo.phone} | {personalInfo.address} </p>
                 </header>
 
                 {/* Professional Summary Section */}
 
-                <section className="border-b pb-4 mb-6">
-                    <h2 className="text-xl font-semibold"> Professional Summary </h2>
+                <section className="pb-4 mb-4">
+                    <h3 className="font-semibold border-b"> Professional Summary </h3>
                         <div className="flex justify-between items-center"> 
                             <p className="text-sm text-justify"> {profSummary.summary} </p>
                         </div>
@@ -29,8 +29,8 @@ const CVPreview = ({formData}) => {
 
                 {/* Skill Section */}
 
-                <section className="border-b pb-4 mb-6">
-                    <h2 className="text-xl font-semibold"> Skills </h2>
+                <section className="pb-4 mb-4">
+                    <h3 className="font-semibold border-b"> Skills </h3>
                         {/* <div className="flex justify-between items-center"> 
                             <p className="text-sm text-justify"> {profSummary.summary} </p>
                         </div> */}
@@ -48,8 +48,8 @@ const CVPreview = ({formData}) => {
 
                 {/* Education Section */}
 
-                <section className="border-b pb-4 mb-6">
-                    <h2 className="text-xl font-semibold"> Education </h2>
+                <section className="pb-4 mb-4">
+                    <h2 className="text-xl font-semibold border-b"> Education </h2>
                         <div className="flex justify-between items-center"> 
                             <span className="flex items-center">
                                 <span className="text-md mr-2"> • </span>
@@ -65,7 +65,7 @@ const CVPreview = ({formData}) => {
 
                 {/* Experience Section  */}
                 <section>
-                    <h2 className="text-xl font-semibold"> Work Experience </h2>
+                    <h2 className="text-xl font-semibold border-b"> Work Experience </h2>
                     {experienceInfo.map((exp, index) => (
                     <div key={index} className="mb-4">   
                         <p className="text-md font-semibold ml-2 mt-0.5"> {exp.position} </p>
