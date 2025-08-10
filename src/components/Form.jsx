@@ -128,8 +128,9 @@ const Form = ({
                                 <div key={index} className="gap-2 rounded flex flex-col"> 
                                     <ExperienceInfoForm 
                                     key={index}
-                                    experienceInfo={formData.experienceInfo} 
-                                    onChange={updateExperienceInfo}
+                                    experienceInfo={exp}  // just one experience
+                                    expIndex={index} // to know which one to update
+                                    updateExperienceInfo={updateExperienceInfo} 
                                     addRole={addRole}
                                     deleteRole={deleteRole}
                                     addExperience={addExperience}
