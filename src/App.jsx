@@ -67,21 +67,12 @@ const [formData, setFormData] =useState({
             }})
     }
 
-    const updateExperienceInfo = (e, expIndex, roleIndex=null) => {
+    const updateExperienceInfo = (e, expIndex) => {
         const {name, value} = e.target;
 
         setFormData((prev) => {
             const updatedExperiences = [...prev.experienceInfo];
-
-            if (name === 'roles' && roleIndex !== null) {
-                updatedExperiences[expIndex].roles[roleIndex] = value;
-            } else {
-                updatedExperiences[expIndex] = {
-                    ...updatedExperiences[expIndex], 
-                    [name]: value
-                }
-            }
-
+            updatedExperiences[expIndex] = {...updatedExperiences[expIndex], [name]: value} 
 
             return {
                 ...prev, experienceInfo: updatedExperiences
@@ -89,16 +80,15 @@ const [formData, setFormData] =useState({
         })  
     }
 
+    // Add role to the correct experience
     const addRole = (expIndex) => {
         setFormData(prev => {
             const updatedExperiences = [...prev.experienceInfo];
+            const exp = updatedExperiences[expIndex]
 
-            if (!updatedExperiences[expIndex]?.inputRole?.trim()) return prev;
-
-            updatedExperiences[expIndex] = {
-                ...updatedExperiences[expIndex],
-                roles: [...updatedExperiences[expIndex].roles, updatedExperiences[expIndex].inputRole.trim()],
-                inputRole: ""
+            if (exp.inputRole?.trim()) {
+                exp.roles = [...(exp.roles || []), exp.inputRole.trim()]
+                exp.inputRole = "" // Clear input after adding
             }
 
             return {
@@ -108,15 +98,15 @@ const [formData, setFormData] =useState({
         })
     }
     
-    const deleteRole = (roleIndex, expIndex) => {
+    // Delete role from the correct experience
+    const deleteRole = (expIndex, roleIndex) => {
         setFormData(prev => {
             const updatedExperiences = [...prev.experienceInfo];
 
-            updatedExperiences[expIndex] = {
-                ...updatedExperiences[expIndex],
-                roles: updatedExperiences[expIndex].roles.filter((_, i) => i !== roleIndex)
-            }
-
+            updatedExperiences[expIndex].roles = updatedExperiences[expIndex].roles.filter(
+                (_, i) => i !== roleIndex
+            )
+        
             return {
                 ...prev,
                 experienceInfo: updatedExperiences

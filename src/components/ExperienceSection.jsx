@@ -52,9 +52,9 @@ const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updat
                 + </button>
             </div>
 
-            {(experienceInfo[expIndex]?.roles?.length ?? 0) > 0 && (
+            {(experienceInfo?.roles?.length ?? 0) > 0 && (
                 <div className="flex flex-col gap-2 mt-1"> 
-                {experienceInfo[expIndex]?.roles?.map((role, roleIndex) => 
+                {experienceInfo.roles.map((role, roleIndex) => 
                     <div key={roleIndex} className="flex items-center gap-2"> 
                         <input type="text"
                         value={role}
@@ -62,7 +62,7 @@ const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updat
                         className="bg-bubbles border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 cursor-not-allowed">
                         </input>
                         <button type="button"
-                        onClick={() => deleteRole(roleIndex, expIndex)}
+                        onClick={() => deleteRole(expIndex, roleIndex)}
                         className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white">
                             ✕
                         </button>
