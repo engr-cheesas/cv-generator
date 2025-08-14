@@ -34,6 +34,11 @@ const [formData, setFormData] =useState({
                 skillCategory: "",
                 skillName: "",
                 isEditing: true
+            }],
+            projectInfo: [{
+                projectName: "",
+                projectDef: [], 
+                inputDef: ""
             }]
         })
 
@@ -169,6 +174,60 @@ const [formData, setFormData] =useState({
         })
     }
 
+    const addProject = () => {
+        setFormData((prev) => ({
+            ...prev,
+            projectInfo: [
+                ...prev.projectInfo,
+                {
+                    projectName: "",
+                    projectDef: [],
+                    inputDef: ""
+                }
+            ]
+        }))
+    }
+
+    const deleteProject = (projIndex) => {
+        setFormData(prev => ({
+            ...prev, projectInfo: prev.projectInfo.filter((_, i) => i !== projIndex)
+        }))
+    }
+
+    // Add description to the correct project
+    const addProjectDef = (projIndex) => {
+        setFormData(prev => {
+            const updatedProject = [...prev.projectInfo];
+            const proj = updatedProject[projIndex]
+
+            if (proj.inputRole?.trim()) {
+                proj.projectDef = [...(proj.projectDef || []), proj.inputDef.trim()]
+                proj.inputDef = "" // Clear input after adding
+            }
+
+            return {
+                ...prev, 
+                projectInfo: updatedProject
+            }
+        })
+    }
+    
+    // Delete description to the correct project
+    const deleteProjectDef = (projIndex, defIndex) => {
+        setFormData(prev => {
+            const updatedProject = [...prev.projectInfo];
+
+            updatedProject[projIndex].projectDef = updatedProject[projIndex].projectDef.filter(
+                (_, i) => i !== defIndex
+            )
+        
+            return {
+                ...prev,
+                projectInfo: updatedProject
+            }
+        })
+    }
+
     const [showPreview, setShowPreview] = useState(false);
 
     return ( 
@@ -197,6 +256,10 @@ const [formData, setFormData] =useState({
                         deleteRole={deleteRole}
                         addExperience={addExperience}
                         deleteExperience={deleteExperience}
+                        addProject={addProject}
+                        deleteProject={deleteProject}
+                        addProjectDef={addProjectDef}
+                        deleteProjectDef={deleteProjectDef}
                     />
 
                     {!showPreview && (

@@ -4,6 +4,7 @@ import PersonalInfoForm from './PersonalSection'
 import EducationInfoForm from './EducationSection'
 import ExperienceInfoForm from './ExperienceSection'
 import SkillSection from './SkillSection';
+import ProjectSection from './ProjectSection';
 
 const Form = ({
     formData, 
@@ -147,6 +148,24 @@ const Form = ({
                                 className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-4">
                                 Add Experience
                             </button>
+                        </div>
+                    )}
+                </section>
+
+                {/* Project Section */}
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto">
+                    <div className='flex items-center justify-between'>
+                        <h2 className="text-white font-bold text-lg"> Projects </h2>
+                        <button type="button"
+                            onClick={() => toggleSection('projectInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'projectInfo' ? '▲' : '▼'} 
+                        </button>
+                    </div>
+                    {openSection === 'projectInfo' && (
+                        <div>
+                            <ProjectSection
+                            projectInfo={formData?.projectInfo ?? []}/>
                         </div>
                     )}
                 </section>
