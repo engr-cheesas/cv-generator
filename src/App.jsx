@@ -174,6 +174,19 @@ const [formData, setFormData] =useState({
         })
     }
 
+    const updateProjectInfo = (e, projIndex) => {
+        const {name, value} = e.target;
+
+        setFormData((prev) => {
+            const updatedProject = [...prev.projectInfo];
+            updatedProject[projIndex] = {...updatedProject[projIndex], [name]: value} 
+
+            return {
+                ...prev, projectInfo: updatedProject
+            }
+        })  
+    }
+
     const addProject = () => {
         setFormData((prev) => ({
             ...prev,
@@ -200,9 +213,12 @@ const [formData, setFormData] =useState({
             const updatedProject = [...prev.projectInfo];
             const proj = updatedProject[projIndex]
 
-            if (proj.inputRole?.trim()) {
-                proj.projectDef = [...(proj.projectDef || []), proj.inputDef.trim()]
-                proj.inputDef = "" // Clear input after adding
+            if (proj.inputDef?.trim()) {
+                updatedProject[projIndex] = {
+                    ...proj,
+                    projectDef: [...(proj.projectDef || []), proj.inputDef.trim()],
+                    inputDef: ""
+                };
             }
 
             return {
@@ -248,6 +264,7 @@ const [formData, setFormData] =useState({
                         updateEducationInfo={updateEducationInfo}
                         updateExperienceInfo={updateExperienceInfo}
                         updateSkillInfo={updateSkillInfo}
+                        updateProjectInfo={updateProjectInfo}
                         addSkill={addSkill}
                         deleteSkill={deleteSkill}
                         toggleEditSkill={toggleEditSkill}

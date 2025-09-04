@@ -49,7 +49,8 @@ const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updat
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}> 
-                + </button>
+                    + 
+                </button>
             </div>
 
             {(experienceInfo?.roles?.length ?? 0) > 0 && (

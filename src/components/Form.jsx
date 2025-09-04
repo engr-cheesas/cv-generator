@@ -24,7 +24,9 @@ const Form = ({
     addExperience,
     deleteExperience,
     addProject,
-    deleteProject}) => {
+    deleteProject,
+    addProjectDef,
+    deleteProjectDef}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -174,6 +176,8 @@ const Form = ({
                                     projectInfo={proj} // just one experience
                                     projIndex={index} // to know which one to update
                                     updateProjectInfo={updateProjectInfo}
+                                    addProjectDef={addProjectDef}
+                                    deleteProjectDef={deleteProjectDef}
                                     />
                                     <button type="button"
                                         onClick={() => deleteProject(index)}
