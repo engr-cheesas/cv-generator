@@ -4,9 +4,8 @@ const CVPreview = ({formData}) => {
         personalInfo, 
         skillInfo,
         educationInfo, 
-        experienceInfo} = formData
-
-    console.log(experienceInfo)
+        experienceInfo,
+        projectInfo} = formData
 
     return (  
         // Right-Panel Container
@@ -49,12 +48,12 @@ const CVPreview = ({formData}) => {
                 {/* Education Section */}
 
                 <section className="pb-4 mb-4">
-                    <h2 className="text-xl font-semibold border-b"> Education </h2>
+                    <h3 className="font-semibold border-b"> Education </h3>
                         <div className="flex justify-between items-center"> 
                             <span className="flex items-center">
-                                <span className="text-md mr-2"> • </span>
-                                <span className="text-md font-medium"> {educationInfo.school} </span>
-                                <span className="text-md ml-2 font-medium"> - {educationInfo.location} </span>
+                                <span className="text-sm mr-2"> • </span>
+                                <span className="text-sm font-medium"> {educationInfo.school} </span>
+                                <span className="text-sm ml-2 font-medium"> - {educationInfo.location} </span>
                             </span>
                             <span className="text-sm text-gray-500"> 
                                 {educationInfo.startDate} - {educationInfo.endDate}
@@ -65,10 +64,10 @@ const CVPreview = ({formData}) => {
 
                 {/* Experience Section  */}
                 <section>
-                    <h2 className="text-xl font-semibold border-b"> Work Experience </h2>
+                    <h3 className="font-semibold border-b"> Work Experience </h3>
                     {experienceInfo.map((exp, index) => (
                     <div key={index} className="mb-4">   
-                        <p className="text-md font-semibold ml-2 mt-0.5"> {exp.position} </p>
+                        <p className="text-sm font-semibold ml-2 mt-0.5"> {exp.position} </p>
                         <div className="flex justify-between">
                             <span> 
                                 <span className="ml-2 text-sm font-medium"> {exp.company} </span>
@@ -85,7 +84,22 @@ const CVPreview = ({formData}) => {
                         )}
                     </div>
                     ))}
-                    
+                </section>
+                
+                {/* Projects Section */}
+                <section className="pb-4 mb-4">
+                    <h3 className="font-semibold border-b"> Projects </h3>
+                    {projectInfo.map((proj, index) => (
+                        <div key={index} className="mb-4">
+                            <p className="text-sm font-semibold ml-2 mt-0.5"> {proj.projectName} </p>
+                            {proj.projectDef && proj.projectDef.length > 0 && (
+                                <ul className="list-disc ml-8 mt-1"> 
+                                    {proj.projectDef.map((projectDef, defIndex) => 
+                                    <li key={defIndex} className="text-sm"> {projectDef} </li>)}
+                                </ul>
+                            )}
+                        </div>
+                    ))}
                 </section>
             </div>
         </div>
