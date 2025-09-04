@@ -3,11 +3,13 @@ import Navbar from './components/Navbar';
 import Form from './components/Form'; 
 import CVPreview from './components/CVPreview';
 import useFormData from './hooks/useFormData';
+import usePrint from './hooks/usePrint';
 
 function App () {
     const {
         formData, 
-        setFormData,
+        placeholderData,
+        // setFormData,
         updateSummary,
         updatePersonalInfo,
         updateSkillInfo,
@@ -28,6 +30,8 @@ function App () {
         deleteProjectDef
     } = useFormData()
 
+    const {printRef, handlePrint} = usePrint()
+
     const [showPreview, setShowPreview] = useState(false);
 
     return ( 
@@ -41,7 +45,7 @@ function App () {
                     <div className='flex flex-col gap-4 w-full'> 
                         <Form 
                         formData={formData} 
-                        setFormData={setFormData}
+                        // setFormData={setFormData}
                         isPreviewOpen={showPreview}
                         onGenerate = {() => {setShowPreview(true)}}
                         updateSummary={updateSummary}
@@ -79,7 +83,20 @@ function App () {
                 {showPreview && (
                     <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
                         {/* <p> CV Preview Panel </p> */}
-                        <CVPreview formData={formData} />
+                        <div>
+                            <CVPreview 
+                                formData={formData || placeholderData} 
+                                ref={printRef}
+                            />
+                        </div> 
+                        <button
+                            onClick={() => {
+                                console.log("printRef.current:", printRef.current);
+                                handlePrint();
+                            }} 
+                            className="bg-red-500 text-white px-4 py-2 rounded">
+                            Print CV
+                        </button>
                     </div>
                 )}
             </div>
