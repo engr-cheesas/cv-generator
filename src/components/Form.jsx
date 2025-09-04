@@ -4,6 +4,7 @@ import PersonalInfoForm from './PersonalSection'
 import EducationInfoForm from './EducationSection'
 import ExperienceInfoForm from './ExperienceSection'
 import SkillSection from './SkillSection';
+import ProjectSection from './ProjectSection';
 
 const Form = ({
     formData, 
@@ -13,6 +14,7 @@ const Form = ({
     updateSkillInfo,
     updateEducationInfo,
     updateExperienceInfo,
+    updateProjectInfo,
     isPreviewOpen,
     addRole,
     deleteRole,
@@ -20,7 +22,9 @@ const Form = ({
     deleteSkill,
     toggleEditSkill,
     addExperience,
-    deleteExperience}) => {
+    deleteExperience,
+    addProject,
+    deleteProject}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -146,6 +150,43 @@ const Form = ({
                                 onClick={addExperience}
                                 className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-4">
                                 Add Experience
+                            </button>
+                        </div>
+                    )}
+                </section>
+
+                {/* Project Section */}
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto">
+                    <div className='flex items-center justify-between'>
+                        <h2 className="text-white font-bold text-lg"> Projects </h2>
+                        <button type="button"
+                            onClick={() => toggleSection('projectInfo')}
+                            className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
+                                {openSection === 'projectInfo' ? '▲' : '▼'} 
+                        </button>
+                    </div>
+                    {openSection === 'projectInfo' && (
+                        <div className="gap-2 rounded flex flex-col">
+                            {formData.projectInfo.map((proj, index) => (
+                                <div key={index} className="gap-2 rounded flex flex-col"> 
+                                    <ProjectSection
+                                    key={index}
+                                    projectInfo={proj} // just one experience
+                                    projIndex={index} // to know which one to update
+                                    updateProjectInfo={updateProjectInfo}
+                                    />
+                                    <button type="button"
+                                        onClick={() => deleteProject(index)}
+                                        className="mt-2 px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                        Delete Project
+                                    </button>
+                                </div>
+                            ))}
+
+                            <button type="button"
+                                onClick={addProject}
+                                className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-2">
+                                Add Project
                             </button>
                         </div>
                     )}
