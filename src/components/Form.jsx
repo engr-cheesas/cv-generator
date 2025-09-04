@@ -14,6 +14,7 @@ const Form = ({
     updateSkillInfo,
     updateEducationInfo,
     updateExperienceInfo,
+    updateProjectInfo,
     isPreviewOpen,
     addRole,
     deleteRole,
@@ -21,7 +22,9 @@ const Form = ({
     deleteSkill,
     toggleEditSkill,
     addExperience,
-    deleteExperience}) => {
+    deleteExperience,
+    addProject,
+    deleteProject}) => {
 
     const [openSection, setOpenSection] = useState(null);
     
@@ -163,9 +166,28 @@ const Form = ({
                         </button>
                     </div>
                     {openSection === 'projectInfo' && (
-                        <div>
-                            <ProjectSection
-                            projectInfo={formData?.projectInfo ?? []}/>
+                        <div className="gap-2 rounded flex flex-col">
+                            {formData.projectInfo.map((proj, index) => (
+                                <div key={index} className="gap-2 rounded flex flex-col"> 
+                                    <ProjectSection
+                                    key={index}
+                                    projectInfo={proj} // just one experience
+                                    projIndex={index} // to know which one to update
+                                    updateProjectInfo={updateProjectInfo}
+                                    />
+                                    <button type="button"
+                                        onClick={() => deleteProject(index)}
+                                        className="mt-2 px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                        Delete Project
+                                    </button>
+                                </div>
+                            ))}
+
+                            <button type="button"
+                                onClick={addProject}
+                                className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-2">
+                                Add Project
+                            </button>
                         </div>
                     )}
                 </section>
