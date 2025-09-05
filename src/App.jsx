@@ -1,9 +1,11 @@
 import {useState} from 'react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import Navbar from './components/Navbar';
 import Form from './components/Form'; 
 import CVPreview from './components/CVPreview';
+import CVDocument from './components/CVDocument'; 
 import useFormData from './hooks/useFormData';
-import usePrint from './hooks/usePrint';
+
 
 function App () {
     const {
@@ -30,7 +32,14 @@ function App () {
         deleteProjectDef
     } = useFormData()
 
-    const {printRef, handlePrint} = usePrint()
+    const safeFormData = {
+        profSummary: formData?.profSummary || placeholderData.profSummary,
+        personalInfo: formData?.personalInfo || placeholderData.personalInfo,
+        skillInfo: formData?.skillInfo || placeholderData.skillInfo,
+        educationInfo: formData?.educationInfo || placeholderData.educationInfo,
+        experienceInfo: formData?.experienceInfo || placeholderData.experienceInfo,
+        projectInfo: formData?.projectInfo || placeholderData.projectInfo,
+    };
 
     const [showPreview, setShowPreview] = useState(false);
 
@@ -78,7 +87,6 @@ function App () {
                     )}
                     </div>
                 </div>
-                
 
                 {showPreview && (
                     <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
@@ -86,17 +94,19 @@ function App () {
                         <div>
                             <CVPreview 
                                 formData={formData || placeholderData} 
-                                ref={printRef}
                             />
                         </div> 
-                        <button
-                            onClick={() => {
-                                console.log("printRef.current:", printRef.current);
-                                handlePrint();
-                            }} 
-                            className="bg-red-500 text-white px-4 py-2 rounded">
-                            Print CV
-                        </button>
+                        <PDFDownloadLink
+                            document={<CVDocument safeFormData={safeFormData} />}
+                            fileName="cv.pdf"
+                        >
+                            {({ loading }) => (
+                                <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
+                                {loading ? 'Preparing PDF...' : 'Download PDF'}
+                                </button>
+                            )}
+                        </PDFDownloadLink>
+
                     </div>
                 )}
             </div>

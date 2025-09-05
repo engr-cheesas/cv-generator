@@ -1,6 +1,4 @@
-import { forwardRef } from "react";
-
-const CVPreview = forwardRef(({formData}, ref) => {
+const CVPreview = ({formData}) => {
     const {
         profSummary,
         personalInfo, 
@@ -14,7 +12,7 @@ const CVPreview = forwardRef(({formData}, ref) => {
         // Right-Panel Container
         <div className="flex justify-center items-start w-full h-full"> 
             {/* Paper-like CV */}
-            <div ref={ref} className="bg-white max-w-xl w-full p-6 shadow-lg font-times">
+            <div className="bg-white max-w-xl w-full p-6 shadow-lg font-times">
                 <header className="pb-4 flex flex-col items-center justify-center"> 
                     <h1 className="text-3xl font-bold items-center justify-center pt-2 uppercase"> {personalInfo.name} </h1>
                     <p className="text-sm"> {personalInfo.email} | {personalInfo.phone} | {personalInfo.address} </p>
@@ -107,6 +105,6 @@ const CVPreview = forwardRef(({formData}, ref) => {
             </div>
         </div>
     )
-})
+}
 
 export default CVPreview;
