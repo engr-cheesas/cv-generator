@@ -1,13 +1,17 @@
 import {useState} from 'react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import Navbar from './components/Navbar';
 import Form from './components/Form'; 
 import CVPreview from './components/CVPreview';
+import CVDocument from './components/CVDocument'; 
 import useFormData from './hooks/useFormData';
+
 
 function App () {
     const {
         formData, 
-        setFormData,
+        placeholderData,
+        // setFormData,
         updateSummary,
         updatePersonalInfo,
         updateSkillInfo,
@@ -28,6 +32,15 @@ function App () {
         deleteProjectDef
     } = useFormData()
 
+    const safeFormData = {
+        profSummary: formData?.profSummary || placeholderData.profSummary,
+        personalInfo: formData?.personalInfo || placeholderData.personalInfo,
+        skillInfo: formData?.skillInfo || placeholderData.skillInfo,
+        educationInfo: formData?.educationInfo || placeholderData.educationInfo,
+        experienceInfo: formData?.experienceInfo || placeholderData.experienceInfo,
+        projectInfo: formData?.projectInfo || placeholderData.projectInfo,
+    };
+
     const [showPreview, setShowPreview] = useState(false);
 
     return ( 
@@ -41,7 +54,7 @@ function App () {
                     <div className='flex flex-col gap-4 w-full'> 
                         <Form 
                         formData={formData} 
-                        setFormData={setFormData}
+                        // setFormData={setFormData}
                         isPreviewOpen={showPreview}
                         onGenerate = {() => {setShowPreview(true)}}
                         updateSummary={updateSummary}
@@ -74,12 +87,26 @@ function App () {
                     )}
                     </div>
                 </div>
-                
 
                 {showPreview && (
                     <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
                         {/* <p> CV Preview Panel </p> */}
-                        <CVPreview formData={formData} />
+                        <div>
+                            <CVPreview 
+                                formData={formData || placeholderData} 
+                            />
+                        </div> 
+                        <PDFDownloadLink
+                            document={<CVDocument safeFormData={safeFormData} />}
+                            fileName="cv.pdf"
+                        >
+                            {({ loading }) => (
+                                <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
+                                {loading ? 'Preparing PDF...' : 'Download PDF'}
+                                </button>
+                            )}
+                        </PDFDownloadLink>
+
                     </div>
                 )}
             </div>

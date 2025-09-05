@@ -7,6 +7,7 @@ const CVPreview = ({formData}) => {
         experienceInfo,
         projectInfo} = formData
 
+
     return (  
         // Right-Panel Container
         <div className="flex justify-center items-start w-full h-full"> 
@@ -103,7 +104,7 @@ const CVPreview = ({formData}) => {
                 </section>
             </div>
         </div>
-    );
+    )
 }
 
 export default CVPreview;

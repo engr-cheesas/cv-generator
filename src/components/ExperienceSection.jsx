@@ -1,6 +1,5 @@
 const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updateExperienceInfo}) => {
 
-    console.log(experienceInfo)
     return (  
         <div className='flex flex-col gap-4 w-full mt-4'>
             <input type='text'
