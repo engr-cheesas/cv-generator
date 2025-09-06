@@ -6,7 +6,6 @@ import CVPreview from './components/CVPreview';
 import CVDocument from './components/CVDocument'; 
 import useFormData from './hooks/useFormData';
 
-
 function App () {
     const {
         formData, 
@@ -32,22 +31,13 @@ function App () {
         deleteProjectDef
     } = useFormData()
 
-    const safeFormData = {
-        profSummary: formData?.profSummary || placeholderData.profSummary,
-        personalInfo: formData?.personalInfo || placeholderData.personalInfo,
-        skillInfo: formData?.skillInfo || placeholderData.skillInfo,
-        educationInfo: formData?.educationInfo || placeholderData.educationInfo,
-        experienceInfo: formData?.experienceInfo || placeholderData.experienceInfo,
-        projectInfo: formData?.projectInfo || placeholderData.projectInfo,
-    };
-
     const [showPreview, setShowPreview] = useState(false);
 
     return ( 
         // Root container for the application
         <div className='flex flex-col'>
             <Navbar />
-            <div className={`pt-15 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
+            <div className={`pt-20 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
                 {/* Form and CV Preview Panel */}
                 <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
                     {/* Form and Button  */}
@@ -89,22 +79,22 @@ function App () {
                 </div>
 
                 {showPreview && (
-                    <div className='w-1/2 mx-auto bg-gray-100 p-4 rounded shadow-lg'>
+                    <div className='w-1/2 mx-auto bg-bubbles p-4 rounded'>
                         {/* <p> CV Preview Panel </p> */}
                         <div>
                             <CVPreview 
                                 formData={formData || placeholderData} 
                             />
                         </div> 
+
                         <PDFDownloadLink
-                            document={<CVDocument safeFormData={safeFormData} />}
+                            key={JSON.stringify(formData)}  
+                            document={<CVDocument safeFormData={formData} />}
                             fileName="cv.pdf"
                         >
-                            {({ loading }) => (
-                                <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
-                                {loading ? 'Preparing PDF...' : 'Download PDF'}
-                                </button>
-                            )}
+                            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
+                                Download PDF
+                            </button>
                         </PDFDownloadLink>
 
                     </div>

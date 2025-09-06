@@ -1,5 +1,39 @@
 import {useState} from "react"
 
+function mergeWithPlaceholder(formData, placeholderData) {
+  // If array
+  if (Array.isArray(formData)) {
+    if (formData.length === 0) return placeholderData;
+
+    return formData.map((item, i) =>
+      mergeWithPlaceholder(item, placeholderData[i] || placeholderData[0])
+    );
+  }
+
+  // If object
+  if (typeof formData === "object" && formData !== null) {
+    const merged = {};
+    for (const key of Object.keys(placeholderData)) {
+      const formVal = formData[key];
+      const placeholderVal = placeholderData[key];
+
+      if (typeof formVal === "string") {
+        merged[key] = formVal.trim() || placeholderVal;
+      } else {
+        merged[key] = mergeWithPlaceholder(formVal, placeholderVal);
+      }
+    }
+    return merged;
+  }
+
+  // String or primitive fallback
+  if (typeof formData === "string") {
+    return formData.trim() || placeholderData;
+  }
+
+  return formData ?? placeholderData;
+}
+
 function useFormData() {
     const placeholderData = {
         personalInfo: {
@@ -280,8 +314,9 @@ function useFormData() {
     }
 
     return {
-        formData, 
+        formData: mergeWithPlaceholder(formData, placeholderData),
         setFormData,
+        placeholderData,
         updateSummary,
         updatePersonalInfo,
         updateSkillInfo,

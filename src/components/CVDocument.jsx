@@ -1,16 +1,17 @@
-import {Document, Page, Text, View, StyleSheet, PDFDownloadLink} from "@react-pdf/renderer"
+import {Document, Page, Text, View, StyleSheet} from "@react-pdf/renderer"
 
 const styles = StyleSheet.create({
-    page: { padding: 20, fontFamily: 'Times-Roman', fontSize: 12 },
+    page: { padding: 36, fontFamily: 'Times-Roman', fontSize: 12},
     container: { flexDirection: 'column', width: '100%' },
     header: { marginBottom: 10, textAlign: 'center' },
-    name: { fontSize: 18, fontWeight: 'bold', textTransform: 'uppercase' },
-    contact: { fontSize: 10, marginTop: 2 },
+    name: { fontSize: 32, fontWeight: 'bold', textTransform: 'uppercase' },
+    contact: { fontSize: 12, marginTop: 2 },
     section: { marginBottom: 10 },
-    heading: { fontSize: 14, fontWeight: 'bold', borderBottom: 1, marginBottom: 3 },
-    list: { marginLeft: 10 },
-    listItem: { fontSize: 10, marginBottom: 2 },
-    italic: { fontSize: 10, fontStyle: 'italic', color: '#555' },
+    paragraph: {fontSize: 12, textAlign: 'justify', lineHeight: 1.4},
+    heading: { fontSize: 14, fontWeight: 'bold', borderBottom: 1, marginBottom: 6 },
+    list: { marginLeft: 0 },
+    listItem: { fontSize: 12, marginBottom: 2 },
+    italic: { fontSize: 12, fontStyle: 'italic', color: '#555' },
     flexRow: { flexDirection: 'row', justifyContent: 'space-between' },
     })
 
@@ -32,8 +33,8 @@ const CVDocument = ({safeFormData}) => {
 
                     {/* Professional Summary */}
                     <View style={styles.section}> 
-                        <Text style={styles.heading}> Professional Summary </Text>
-                        <Text> {safeFormData.profSummary.summary} </Text>
+                        <Text style={styles.heading}>Professional Summary</Text>
+                        <Text style={styles.paragraph}>{safeFormData.profSummary.summary}</Text>
                     </View>
 
                     {/* Skills */}

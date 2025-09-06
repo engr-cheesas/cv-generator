@@ -28,10 +28,20 @@ const Form = ({
     addProjectDef,
     deleteProjectDef}) => {
 
-    const [openSection, setOpenSection] = useState(null);
+    const [openSections, setOpenSections] = useState({
+        personalInfo: false,
+        profSummary: false,
+        skillInfo: false,
+        educationInfo: false,
+        experienceInfo: false,
+        projectInfo: false
+    });
     
     const toggleSection = (section) => {
-        setOpenSection((prev) => (prev === section ? null : section))
+        setOpenSections((prev) => ({
+            ...prev,
+            [section] : !prev[section]
+        }))
     }
 
     return (
@@ -40,16 +50,16 @@ const Form = ({
             <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-2 px-4`}>
 
                 {/* Personal Information Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mt-4"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mt-4 mx-auto"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg">Personal Information</h2>
                         <button type="button"
                             onClick={() => toggleSection('personalInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
-                                {openSection === 'personalInfo' ? '▲' : '▼'}
+                                {openSections.personalInfo ? '▲' : '▼'}
                         </button>
                     </div>
-                    {openSection === 'personalInfo' && (
+                    {openSections.personalInfo && (
                         <PersonalInfoForm 
                             personalInfo={formData.personalInfo} 
                             onChange={updatePersonalInfo}
@@ -58,17 +68,17 @@ const Form = ({
                 </section>
 
                 {/* Professional Summary Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg"> Professional Summary</h2>
                         <button type="button"
                             onClick={() => toggleSection('profSummary')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
-                                {openSection === 'profSummary' ? '▲' : '▼'}
+                                {openSections.profSummary ? '▲' : '▼'}
                         </button>
                     </div>
 
-                    {openSection === 'profSummary' && (
+                    {openSections.profSummary && (
                         <ProfSummary 
                             profSummary={formData.profSummary} 
                             onChange={updateSummary}
@@ -78,17 +88,17 @@ const Form = ({
                 
                 {/* Skills Section */}
 
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl">
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-white font-bold text-lg">Skills</h2>
                         <button type="button"
                             onClick={() => toggleSection('skillInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
-                                {openSection === 'skillInfo' ? '▲' : '▼'}
+                                {openSections.skillInfo ? '▲' : '▼'}
                         </button>
                     </div>
 
-                    {openSection === 'skillInfo' && (
+                    {openSections.skillInfo && (
                         <SkillSection 
                             skillInfo={formData.skillInfo} 
                             onChange={updateSkillInfo}
@@ -101,16 +111,16 @@ const Form = ({
 
                 {/* Education Section  */}
 
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl"> 
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-white font-bold text-lg"> Education </h2>
                         <button type="button"
                             onClick={() => toggleSection('educationInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
-                                {openSection === 'educationInfo' ? '▲' : '▼'}
+                                {openSections.educationInfo ? '▲' : '▼'}
                         </button>
                     </div>
-                    {openSection === 'educationInfo' &&
+                    {openSections.educationInfo &&
                         <EducationInfoForm 
                             educationInfo={formData.educationInfo} 
                             onChange={updateEducationInfo}
@@ -119,16 +129,16 @@ const Form = ({
                 </section>   
 
                 {/* Experience Section  */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto">
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-white font-bold text-lg"> Work Experience </h2>
                         <button type="button"
                             onClick={() => toggleSection('experienceInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
-                                {openSection === 'experienceInfo' ? '▲' : '▼'} 
+                                {openSections.experienceInfo ? '▲' : '▼'} 
                         </button>
                     </div>
-                    {openSection === 'experienceInfo' && (
+                    {openSections.experienceInfo && (
                         <div>
                             {formData.experienceInfo.map((exp, index) => (
                                 <div key={index} className="gap-2 rounded flex flex-col"> 
@@ -158,16 +168,16 @@ const Form = ({
                 </section>
 
                 {/* Project Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-3xl mx-auto">
+                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-white font-bold text-lg"> Projects </h2>
                         <button type="button"
                             onClick={() => toggleSection('projectInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
-                                {openSection === 'projectInfo' ? '▲' : '▼'} 
+                                {openSections.projectInfo ? '▲' : '▼'} 
                         </button>
                     </div>
-                    {openSection === 'projectInfo' && (
+                    {openSections.projectInfo && (
                         <div className="gap-2 rounded flex flex-col">
                             {formData.projectInfo.map((proj, index) => (
                                 <div key={index} className="gap-2 rounded flex flex-col"> 

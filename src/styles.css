@@ -9,8 +9,23 @@
     --color-oxford-blue: #001f49;
 
     --font-custom-serif: 'Times New Roman', Times, serif;
+
+    --text-10pt: 8pt;
+    --text-10pt: 10pt;
+    --text-11pt: 11pt;
+    --text-12pt: 12pt;
+    --text-14pt: 14pt;
+    --text-16pt: 16pt;
+    --text-18pt: 18pt;
+    --text-10pt: 20pt;
+    --text-11pt: 24pt;
+    --text-12pt: 28pt;
+    --text-14pt: 32pt;
+    --text-16pt: 40pt;
+    --text-18pt: 48pt;
 }
 
 .font-times {
     font-family: var(--font-custom-serif);
 }
+
