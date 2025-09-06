@@ -25,7 +25,7 @@ const SkillSection = ({skillInfo, onChange, addSkill, deleteSkill, toggleEditSki
                     {!skillInfo.isEditing && (
                         <button type="button"
                             onClick={() => deleteSkill(index)}
-                            className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white"> 
+                            className="bg-amber-900 hover:bg-amber-700 px-4 py-2 rounded text-white"> 
                             ✕ 
                         </button>
                     )}
@@ -34,7 +34,7 @@ const SkillSection = ({skillInfo, onChange, addSkill, deleteSkill, toggleEditSki
             )}
             <button type="button"
                 onClick={addSkill}
-                className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-4"> 
+                className="px-4 py-2 bg-lime-900 text-stone-100 hover:bg-lime-600 rounded transition w-full mt-4"> 
                 + 
             </button>
         </div>

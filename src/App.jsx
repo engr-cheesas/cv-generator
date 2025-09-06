@@ -10,14 +10,12 @@ import { placeholderData } from './utils/placeholderData';
 function App () {
     const {
         formData, 
-        // setFormData,
         updateSummary,
         updatePersonalInfo,
         updateSkillInfo,
         updateEducationInfo,
         updateExperienceInfo,
         updateProjectInfo,
-        // isPreviewOpen,
         addRole,
         deleteRole,
         addSkill,
@@ -33,76 +31,78 @@ function App () {
 
     const safeFormData = mergePlaceholder(formData, placeholderData);
 
-    const [showPreview, setShowPreview] = useState(false);
+    const [isEditing, setIsEditing] = useState(true) // true: edit mode, false: preview mode
+
+    const handleEditSave = () => {
+        setIsEditing(!isEditing)
+    }
 
     return ( 
         // Root container for the application
-        <div className='flex flex-col'>
+        <div className={`flex flex-col items-center min-h-screen pt-10 transition-colors duration-300 ${
+            !isEditing ? 'bg-amber-900' : 'bg-stone-100'
+        }`}>
+        
+            {/* Buttons */}
+            <div className="flex gap-10 mb-4">
+                <button
+                    onClick={handleEditSave}
+                    className="bg-amber-600 text-white w-50 px-4 py-4 rounded hover:bg-amber-400 transition-colors"
+                >
+                    {isEditing ? 'Save' : 'Edit'}
+                </button>
+
+                
+                <PDFDownloadLink
+                    key={JSON.stringify(formData)}  
+                    document={<CVDocument safeFormData={safeFormData} />}
+                    fileName="cv.pdf"
+                >
+                    <button className="bg-lime-900 text-white w-50 px-4 py-4 rounded hover:bg-lime-600 transition-colors">
+                        Download PDF
+                    </button>
+                </PDFDownloadLink>
             
-            <div className={`pt-20 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-stone-100`}>
-                {/* Form and CV Preview Panel */}
-                <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
-                    {/* Form and Button  */}
-                    <div className='flex flex-col gap-4 w-full'> 
-                        <Form 
-                        formData={formData} 
-                        // setFormData={setFormData}
-                        isPreviewOpen={showPreview}
-                        onGenerate = {() => {setShowPreview(true)}}
-                        updateSummary={updateSummary}
-                        updatePersonalInfo={updatePersonalInfo}
-                        updateEducationInfo={updateEducationInfo}
-                        updateExperienceInfo={updateExperienceInfo}
-                        updateSkillInfo={updateSkillInfo}
-                        updateProjectInfo={updateProjectInfo}
-                        addSkill={addSkill}
-                        deleteSkill={deleteSkill}
-                        toggleEditSkill={toggleEditSkill}
-                        addRole={addRole}
-                        deleteRole={deleteRole}
-                        addExperience={addExperience}
-                        deleteExperience={deleteExperience}
-                        addProject={addProject}
-                        deleteProject={deleteProject}
-                        addProjectDef={addProjectDef}
-                        deleteProjectDef={deleteProjectDef}
-                    />
-
-                    {!showPreview && (
-                        <div className="flex justify-center"> 
-                            <button type="button"
-                            onClick={() => setShowPreview(true)}
-                            className='bg-amber-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
-                            Generate CV
-                            </button>
-                        </div>
-                    )}
-                    </div>
-                </div>
-
-                {showPreview && (
-                    <div className='w-1/2 mx-auto bg-stone-100 p-4 rounded'>
-                        {/* <p> CV Preview Panel </p> */}
-                        <div>
-                            <CVPreview 
-                                formData={formData || placeholderData} 
-                            />
-                        </div> 
-
-                        <PDFDownloadLink
-                            key={JSON.stringify(formData)}  
-                            document={<CVDocument safeFormData={safeFormData} />}
-                            fileName="cv.pdf"
-                        >
-                            <button className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
-                                Download PDF
-                            </button>
-                        </PDFDownloadLink>
-
-                    </div>
-                )}
             </div>
-        </div>
+            
+            {/* Form */}
+            {isEditing && (
+                <Form 
+                    formData={formData} 
+                    // setFormData={setFormData}
+                    updateSummary={updateSummary}
+                    updatePersonalInfo={updatePersonalInfo}
+                    updateEducationInfo={updateEducationInfo}
+                    updateExperienceInfo={updateExperienceInfo}
+                    updateSkillInfo={updateSkillInfo}
+                    updateProjectInfo={updateProjectInfo}
+                    addSkill={addSkill}
+                    deleteSkill={deleteSkill}
+                    toggleEditSkill={toggleEditSkill}
+                    addRole={addRole}
+                    deleteRole={deleteRole}
+                    addExperience={addExperience}
+                    deleteExperience={deleteExperience}
+                    addProject={addProject}
+                    deleteProject={deleteProject}
+                    addProjectDef={addProjectDef}
+                    deleteProjectDef={deleteProjectDef}
+                />
+            )}
+
+            {/* CV Preview */}
+            {!isEditing && (
+                <div className='mx-auto'>
+                    <div>
+                        <CVPreview 
+                            formData={formData || placeholderData} 
+                        />
+                    </div> 
+
+                </div>
+            )}
+            
+        </div>   
     );
 }
 
