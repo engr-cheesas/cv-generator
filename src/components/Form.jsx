@@ -50,9 +50,9 @@ const Form = ({
             <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-2 px-4`}>
 
                 {/* Personal Information Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mt-4 mx-auto"> 
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
-                        <h2 className="text-white font-bold text-lg">Personal Information</h2>
+                        <h2 className="text-stone-800 font-bold text-xl">Personal Information</h2>
                         <button type="button"
                             onClick={() => toggleSection('personalInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -68,9 +68,9 @@ const Form = ({
                 </section>
 
                 {/* Professional Summary Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto"> 
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
-                        <h2 className="text-white font-bold text-lg"> Professional Summary</h2>
+                        <h2 className="text-stone-800 font-bold text-xl"> Professional Summary</h2>
                         <button type="button"
                             onClick={() => toggleSection('profSummary')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -88,9 +88,9 @@ const Form = ({
                 
                 {/* Skills Section */}
 
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
-                        <h2 className="text-white font-bold text-lg">Skills</h2>
+                        <h2 className="text-stone-800 font-bold text-xl">Skills</h2>
                         <button type="button"
                             onClick={() => toggleSection('skillInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -111,9 +111,9 @@ const Form = ({
 
                 {/* Education Section  */}
 
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto"> 
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
-                        <h2 className="text-white font-bold text-lg"> Education </h2>
+                        <h2 className="text-stone-800 font-bold text-xl"> Education </h2>
                         <button type="button"
                             onClick={() => toggleSection('educationInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -129,9 +129,9 @@ const Form = ({
                 </section>   
 
                 {/* Experience Section  */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
-                        <h2 className="text-white font-bold text-lg"> Work Experience </h2>
+                        <h2 className="text-stone-800 font-bold text-xl"> Work Experience </h2>
                         <button type="button"
                             onClick={() => toggleSection('experienceInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -153,14 +153,14 @@ const Form = ({
                                     deleteExperience={deleteExperience}/>
                                     <button type="button"
                                         onClick={() => deleteExperience(index)}
-                                        className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                        className="mt-2 px-4 py-2 bg-red-500 text-stone-800 rounded hover:bg-red-600 transition">
                                         Delete Experience
                                     </button>
                                 </div>
                             ))}
                             <button type="button"
                                 onClick={addExperience}
-                                className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-4">
+                                className="px-4 py-2 rounded bg-lime-900 text-stone-100 hover:bg-lime-600 transition w-full mt-4">
                                 Add Experience
                             </button>
                         </div>
@@ -168,9 +168,9 @@ const Form = ({
                 </section>
 
                 {/* Project Section */}
-                <section className="bg-electric-blue rounded-lg p-4 mb-4 border border-gray-700 w-full max-w-2xl mx-auto">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
-                        <h2 className="text-white font-bold text-lg"> Projects </h2>
+                        <h2 className="text-stone-800 font-bold text-xl"> Projects </h2>
                         <button type="button"
                             onClick={() => toggleSection('projectInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -182,16 +182,15 @@ const Form = ({
                             {formData.projectInfo.map((proj, index) => (
                                 <div key={index} className="gap-2 rounded flex flex-col"> 
                                     <ProjectSection
-                                    key={index}
-                                    projectInfo={proj} // just one experience
-                                    projIndex={index} // to know which one to update
-                                    updateProjectInfo={updateProjectInfo}
-                                    addProjectDef={addProjectDef}
-                                    deleteProjectDef={deleteProjectDef}
-                                    />
+                                        projectInfo={proj} // just one experience
+                                        projIndex={index} // to know which one to update
+                                        updateProjectInfo={updateProjectInfo}
+                                        addProjectDef={() => addProjectDef(index)}
+                                        deleteProjectDef={(defIndex) => deleteProjectDef(index, defIndex)}
+                                    />  
                                     <button type="button"
                                         onClick={() => deleteProject(index)}
-                                        className="mt-2 px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                        className="mt-2 px-4 py-2 w-full bg-red-500 text-stone-800 rounded hover:bg-red-600 transition">
                                         Delete Project
                                     </button>
                                 </div>
@@ -199,7 +198,7 @@ const Form = ({
 
                             <button type="button"
                                 onClick={addProject}
-                                className="px-4 py-2 rounded text-white transition w-full bg-blue-500 mt-2">
+                                className="px-4 py-2 rounded bg-lime-900 text-stone-100 hover:bg-lime-600 transition w-full mt-2">
                                 Add Project
                             </button>
                         </div>

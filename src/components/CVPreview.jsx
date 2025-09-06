@@ -1,4 +1,5 @@
 const CVPreview = ({formData}) => {
+
     const {
         profSummary,
         personalInfo, 

@@ -1,4 +1,6 @@
 import {Document, Page, Text, View, StyleSheet} from "@react-pdf/renderer"
+import mergePlaceholder from "../utils/mergePlaceholder";
+import { placeholderData } from "../utils/placeholderData";
 
 const styles = StyleSheet.create({
     page: { padding: 36, fontFamily: 'Times-Roman', fontSize: 12},
@@ -16,6 +18,16 @@ const styles = StyleSheet.create({
     })
 
 const CVDocument = ({safeFormData}) => {
+    const formData = mergePlaceholder(safeFormData, placeholderData);
+
+    const {
+        personalInfo,
+        profSummary,
+        educationInfo,
+        experienceInfo,
+        skillInfo,
+        projectInfo
+    } = formData
     
     return (
         <Document>
@@ -25,24 +37,24 @@ const CVDocument = ({safeFormData}) => {
 
                     {/* Header */}
                     <View style={styles.header}> 
-                        <Text style={styles.name}> {safeFormData.personalInfo.name} </Text>
+                        <Text style={styles.name}> {personalInfo.name} </Text>
                         <Text style={styles.contact}> 
-                            {safeFormData.personalInfo.email} | {safeFormData.personalInfo.phone} | {safeFormData.personalInfo.address} 
+                            {personalInfo.email} | {personalInfo.phone} | {personalInfo.address} 
                         </Text>
                     </View>
 
                     {/* Professional Summary */}
                     <View style={styles.section}> 
                         <Text style={styles.heading}>Professional Summary</Text>
-                        <Text style={styles.paragraph}>{safeFormData.profSummary.summary}</Text>
+                        <Text style={styles.paragraph}>{profSummary.summary}</Text>
                     </View>
 
                     {/* Skills */}
                     <View style={styles.section}>
                         <Text style={styles.heading}>Skills</Text>
-                        {safeFormData.skillInfo && safeFormData.skillInfo.length > 0 && (
+                        {skillInfo && skillInfo.length > 0 && (
                         <View style={styles.list}>
-                            {safeFormData.skillInfo.map((skill, index) => (
+                            {skillInfo.map((skill, index) => (
                             <Text key={index} style={styles.listItem}>
                                 <Text style={{ fontWeight: 'bold' }}>{skill.skillCategory}: </Text>
                                 {skill.skillName}
@@ -57,17 +69,17 @@ const CVDocument = ({safeFormData}) => {
                         <Text style={styles.heading}>Education</Text>
                         <View style={styles.flexRow}>
                         <Text>
-                            {safeFormData.educationInfo.school} - {safeFormData.educationInfo.location}
+                            {educationInfo.school} - {educationInfo.location}
                         </Text>
-                        <Text>{safeFormData.educationInfo.startDate} - {safeFormData.educationInfo.endDate}</Text>
+                        <Text>{educationInfo.startDate} - {educationInfo.endDate}</Text>
                         </View>
-                        <Text style={styles.italic}>{safeFormData.educationInfo.degree}</Text>
+                        <Text style={styles.italic}>{educationInfo.degree}</Text>
                     </View>
 
                     {/* Experiences */}
                     <View style={styles.section}>
                         <Text style={styles.heading}>Work Experience</Text>
-                        {safeFormData.experienceInfo?.map((exp, i) => (
+                        {experienceInfo?.map((exp, i) => (
                         <View key={i} style={{ marginBottom: 5 }}>
                             <Text style={{ fontSize: 12, fontWeight: 'bold' }}>{exp.position}</Text>
                             <View style={styles.flexRow}>
@@ -88,7 +100,7 @@ const CVDocument = ({safeFormData}) => {
                     {/* Projects */}
                     <View style={styles.section}>
                         <Text style={styles.heading}>Projects</Text>
-                        {safeFormData.projectInfo?.map((proj, i) => (
+                        {projectInfo?.map((proj, i) => (
                         <View key={i} style={{ marginBottom: 5 }}>
                             <Text style={{ fontWeight: 'bold' }}>{proj.projectName}</Text>
                             {proj.projectDef && proj.projectDef.length > 0 && (

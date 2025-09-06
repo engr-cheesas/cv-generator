@@ -5,11 +5,12 @@ import Form from './components/Form';
 import CVPreview from './components/CVPreview';
 import CVDocument from './components/CVDocument'; 
 import useFormData from './hooks/useFormData';
+import mergePlaceholder from './utils/mergePlaceholder';
+import { placeholderData } from './utils/placeholderData';
 
 function App () {
     const {
         formData, 
-        placeholderData,
         // setFormData,
         updateSummary,
         updatePersonalInfo,
@@ -31,13 +32,15 @@ function App () {
         deleteProjectDef
     } = useFormData()
 
+    const safeFormData = mergePlaceholder(formData, placeholderData);
+
     const [showPreview, setShowPreview] = useState(false);
 
     return ( 
         // Root container for the application
         <div className='flex flex-col'>
             <Navbar />
-            <div className={`pt-20 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-bubbles`}>
+            <div className={`pt-20 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-stone-100`}>
                 {/* Form and CV Preview Panel */}
                 <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>
                     {/* Form and Button  */}
@@ -70,7 +73,7 @@ function App () {
                         <div className="flex justify-center"> 
                             <button type="button"
                             onClick={() => setShowPreview(true)}
-                            className='bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
+                            className='bg-amber-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300'>
                             Generate CV
                             </button>
                         </div>
@@ -79,7 +82,7 @@ function App () {
                 </div>
 
                 {showPreview && (
-                    <div className='w-1/2 mx-auto bg-bubbles p-4 rounded'>
+                    <div className='w-1/2 mx-auto bg-stone-100 p-4 rounded'>
                         {/* <p> CV Preview Panel </p> */}
                         <div>
                             <CVPreview 
@@ -89,10 +92,10 @@ function App () {
 
                         <PDFDownloadLink
                             key={JSON.stringify(formData)}  
-                            document={<CVDocument safeFormData={formData} />}
+                            document={<CVDocument safeFormData={safeFormData} />}
                             fileName="cv.pdf"
                         >
-                            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
+                            <button className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
                                 Download PDF
                             </button>
                         </PDFDownloadLink>

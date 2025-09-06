@@ -1,78 +1,6 @@
 import {useState} from "react"
 
-function mergeWithPlaceholder(formData, placeholderData) {
-  // If array
-  if (Array.isArray(formData)) {
-    if (formData.length === 0) return placeholderData;
-
-    return formData.map((item, i) =>
-      mergeWithPlaceholder(item, placeholderData[i] || placeholderData[0])
-    );
-  }
-
-  // If object
-  if (typeof formData === "object" && formData !== null) {
-    const merged = {};
-    for (const key of Object.keys(placeholderData)) {
-      const formVal = formData[key];
-      const placeholderVal = placeholderData[key];
-
-      if (typeof formVal === "string") {
-        merged[key] = formVal.trim() || placeholderVal;
-      } else {
-        merged[key] = mergeWithPlaceholder(formVal, placeholderVal);
-      }
-    }
-    return merged;
-  }
-
-  // String or primitive fallback
-  if (typeof formData === "string") {
-    return formData.trim() || placeholderData;
-  }
-
-  return formData ?? placeholderData;
-}
-
 function useFormData() {
-    const placeholderData = {
-        personalInfo: {
-            name: "Your Name",
-            email: "email@example.com",
-            phone: "000-000-0000",
-            address: "Your Address",
-        },
-        profSummary: {
-            summary: "Your professional summary goes here..."
-        },
-        skillInfo: [
-            { skillCategory: "Category", skillName: "Skill", isEditing: false }
-        ],
-        educationInfo: {
-            school: "School Name",
-            location: "City, Country",
-            degree: "Degree",
-            startDate: "YYYY",
-            endDate: "YYYY",
-        },
-        experienceInfo: [
-            {
-            position: "Position",
-            company: "Company",
-            companyLoc: "Location",
-            period: "Start - End",
-            roles: ["Role description"],
-            inputRole: ""
-            }
-        ],
-        projectInfo: [
-            {
-            projectName: "Project Name",
-            projectDef: ["Project description"],
-            inputDef: ""
-            }
-        ]
-    };
 
     const [formData, setFormData] =useState({
             profSummary: {
@@ -279,44 +207,49 @@ function useFormData() {
     // Add description to the correct project
     const addProjectDef = (projIndex) => {
         setFormData(prev => {
-            const updatedProject = [...prev.projectInfo];
-            const proj = updatedProject[projIndex]
+            const updatedProject = prev.projectInfo.map((proj, i) => {
+            if (i !== projIndex) return proj;
 
             if (proj.inputDef?.trim()) {
-                updatedProject[projIndex] = {
-                    ...proj,
-                    projectDef: [...(proj.projectDef || []), proj.inputDef.trim()],
-                    inputDef: ""
+                return {
+                ...proj,
+                projectDef: [...proj.projectDef, proj.inputDef.trim()],
+                inputDef: "",
                 };
             }
+            return proj;
+            });
 
             return {
-                ...prev, 
-                projectInfo: updatedProject
-            }
-        })
-    }
+            ...prev,
+            projectInfo: updatedProject,
+            };
+        });
+    };
+
     
     // Delete description to the correct project
     const deleteProjectDef = (projIndex, defIndex) => {
         setFormData(prev => {
-            const updatedProject = [...prev.projectInfo];
+            const updatedProject = prev.projectInfo.map((proj, i) => {
+            if (i !== projIndex) return proj;
 
-            updatedProject[projIndex].projectDef = updatedProject[projIndex].projectDef.filter(
-                (_, i) => i !== defIndex
-            )
-        
             return {
-                ...prev,
-                projectInfo: updatedProject
-            }
-        })
-    }
+                ...proj,
+                projectDef: proj.projectDef.filter((_, j) => j !== defIndex),
+            };
+            });
+
+            return {
+            ...prev,
+            projectInfo: updatedProject,
+            };
+        });
+    };
 
     return {
-        formData: mergeWithPlaceholder(formData, placeholderData),
+        formData,
         setFormData,
-        placeholderData,
         updateSummary,
         updatePersonalInfo,
         updateSkillInfo,

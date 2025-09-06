@@ -7,10 +7,10 @@ const SummarySection = ({profSummary, onChange}) => {
                 value={profSummary.summary}
                 rows={8}
                 onChange={onChange}
-                className="bg-bubbles border border-gray-300 rounded-md mt-4 px-4 py-2 w-full text-justify text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+                className="bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 rounded-md mt-4 px-4 py-2 w-full text-justify transition">
             </textarea>
         </div>
     );
 }
 
-export default SummarySection;
+export default SummarySection; 

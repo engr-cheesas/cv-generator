@@ -7,7 +7,7 @@ const PersonalSection = ({personalInfo, onChange}) => {
                 value={personalInfo.name}
                 name="name"
                 onChange={onChange}
-                className="bg-bubbles border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                className="rounded-md px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"
             />
 
             <input
@@ -16,7 +16,7 @@ const PersonalSection = ({personalInfo, onChange}) => {
                 value={personalInfo.address}
                 name="address"
                 onChange={onChange}
-                className="bg-bubbles border border-gray-300 rounded-md px-4 py-2 w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                className="rounded-md px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"
             />
 
             <div className='flex flex-row gap-4 w-full'>
@@ -26,7 +26,7 @@ const PersonalSection = ({personalInfo, onChange}) => {
                     value={personalInfo.email}
                     name="email"
                     onChange={onChange}
-                    className="bg-bubbles border border-gray-300 rounded-md px-4 py-2 w-1/2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    className="rounded-md px-4 py-2 w-1/2 bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"
                 />
                 <input
                     type='text'
@@ -34,7 +34,7 @@ const PersonalSection = ({personalInfo, onChange}) => {
                     value={personalInfo.phone}
                     name="phone"
                     onChange={onChange}
-                    className="bg-bubbles border border-gray-300 rounded-md px-4 py-2 w-1/2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    className="rounded-md px-4 py-2 w-1/2 bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"
                 />
             </div>
         </div>
