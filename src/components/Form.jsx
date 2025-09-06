@@ -50,7 +50,7 @@ const Form = ({
             <form className={`${isPreviewOpen ? "w-full" : "w-1/2"} flex flex-col gap-2 px-4`}>
 
                 {/* Personal Information Section */}
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md"> 
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-stone-800 font-bold text-xl">Personal Information</h2>
                         <button type="button"
@@ -68,7 +68,7 @@ const Form = ({
                 </section>
 
                 {/* Professional Summary Section */}
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md"> 
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-stone-800 font-bold text-xl"> Professional Summary</h2>
                         <button type="button"
@@ -88,7 +88,7 @@ const Form = ({
                 
                 {/* Skills Section */}
 
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-stone-800 font-bold text-xl">Skills</h2>
                         <button type="button"
@@ -111,7 +111,7 @@ const Form = ({
 
                 {/* Education Section  */}
 
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md"> 
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
                         <h2 className="text-stone-800 font-bold text-xl"> Education </h2>
                         <button type="button"
@@ -129,7 +129,7 @@ const Form = ({
                 </section>   
 
                 {/* Experience Section  */}
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-stone-800 font-bold text-xl"> Work Experience </h2>
                         <button type="button"
@@ -153,7 +153,7 @@ const Form = ({
                                     deleteExperience={deleteExperience}/>
                                     <button type="button"
                                         onClick={() => deleteExperience(index)}
-                                        className="mt-2 px-4 py-2 bg-red-500 text-stone-800 rounded hover:bg-red-600 transition">
+                                        className="mt-2 px-4 py-2 bg-amber-900 hover:bg-amber-600 text-white rounded transition">
                                         Delete Experience
                                     </button>
                                 </div>
@@ -168,7 +168,7 @@ const Form = ({
                 </section>
 
                 {/* Project Section */}
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-2xl mt-4 mx-auto shadow-md">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
                         <h2 className="text-stone-800 font-bold text-xl"> Projects </h2>
                         <button type="button"
@@ -190,7 +190,7 @@ const Form = ({
                                     />  
                                     <button type="button"
                                         onClick={() => deleteProject(index)}
-                                        className="mt-2 px-4 py-2 w-full bg-red-500 text-stone-800 rounded hover:bg-red-600 transition">
+                                        className="mt-2 px-4 py-2 w-full bg-amber-900 hover:bg-amber-600 text-white rounded transition">
                                         Delete Project
                                     </button>
                                 </div>

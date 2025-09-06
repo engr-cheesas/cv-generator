@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import Navbar from './components/Navbar';
 import Form from './components/Form'; 
 import CVPreview from './components/CVPreview';
 import CVDocument from './components/CVDocument'; 
@@ -39,7 +38,7 @@ function App () {
     return ( 
         // Root container for the application
         <div className='flex flex-col'>
-            <Navbar />
+            
             <div className={`pt-20 flex min-h-screen ${showPreview ? 'justify-between' : 'justify-center'} bg-stone-100`}>
                 {/* Form and CV Preview Panel */}
                 <div className={`${showPreview ? 'w-1/2' : 'w-full'} transition-all`}>

@@ -22,7 +22,7 @@ const ProjectSection = ({projectInfo, updateProjectInfo, projIndex, addProjectDe
                     disabled={!projectInfo.inputDef?.trim()}
                     className={`px-4 py-2 rounded text-white transition 
                     ${projectInfo.inputDef?.trim() 
-                        ? "bg-blue-500 hover:bg-blue-600"
+                        ? "bg-lime-900 hover:bg-lime-600"
                         : "bg-gray-400 cursor-not-allowed"
                     }`}
                 >
@@ -41,7 +41,7 @@ const ProjectSection = ({projectInfo, updateProjectInfo, projIndex, addProjectDe
                         </input>
                         <button type="button"
                         onClick={() => deleteProjectDef(projIndex, defIndex)}
-                        className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white">
+                        className="bg-amber-900 hover:bg-amber-700 px-4 py-2 rounded text-white">
                             ✕
                         </button>   
                     </div>
