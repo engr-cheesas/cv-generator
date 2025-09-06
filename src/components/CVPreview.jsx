@@ -11,7 +11,7 @@ const CVPreview = ({formData}) => {
 
     return (  
         // Right-Panel Container
-        <div className="flex justify-center items-start w-full h-full"> 
+        <div className="flex justify-center items-start w-full h-full mb-10 mt-4"> 
             {/* Paper-like CV */}
             <div 
                 className="bg-white p-10 shadow-lg font-times mr-5"
