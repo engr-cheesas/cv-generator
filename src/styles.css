@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600;700&display=swap');
 
 @theme {
     --color-bubbles: #e6f7ff;
@@ -9,11 +10,17 @@
     --color-oxford-blue: #001f49;
     --color-slate-800: #384959; /*navbar*/
     --color-slate-500: #6A89A7;
-    --color-sky-200: #BDDDFC;
-    --color-amber-500: #F59E0B;
+    --color-sky: #BDDDFC;
+    --color-amber: #F59E0B;
+    --color-olive: #708238;   
+    --color-forest: #3C4A29;   
+    --color-brown: #8B5E3C;   
     /* --color-neutral-light-gray: #f8fAfC; bg */
 
     --font-custom-serif: 'Times New Roman', Times, serif;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-skillet: 'Skillet', serif;
 
     --text-10pt: 8pt;
     --text-10pt: 10pt;
@@ -30,7 +37,24 @@
     --text-18pt: 48pt;
 }
 
+@font-face {
+  font-family: 'Skillet';
+  src: url('/fonts/Skillet-Regular.otf') format('opentype');
+}
+
+.font-skillet { 
+    font-family: var(--font-skillet); 
+}
+
 .font-times {
     font-family: var(--font-custom-serif);
+}
+
+.font-poppins {
+    font-family: var(--font-poppins);
+}
+
+.font-inter {
+    font-family: var(--font-inter);
 }
 

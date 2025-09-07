@@ -52,7 +52,7 @@ const Form = ({
                 {/* Personal Information Section */}
                 <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
-                        <h2 className="text-stone-800 font-bold text-xl">Personal Information</h2>
+                        <h2 className="text-stone-800 font-bold text-2xl font-skillet italic">Personal Information</h2>
                         <button type="button"
                             onClick={() => toggleSection('personalInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -70,7 +70,7 @@ const Form = ({
                 {/* Professional Summary Section */}
                 <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
-                        <h2 className="text-stone-800 font-bold text-xl"> Professional Summary</h2>
+                        <h2 className="text-stone-800 font-bold text-2xl font-skillet italic"> Professional Summary</h2>
                         <button type="button"
                             onClick={() => toggleSection('profSummary')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -90,7 +90,7 @@ const Form = ({
 
                 <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
-                        <h2 className="text-stone-800 font-bold text-xl">Skills</h2>
+                        <h2 className="text-stone-800 font-bold text-2xl font-skillet italic">Skills</h2>
                         <button type="button"
                             onClick={() => toggleSection('skillInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -113,7 +113,7 @@ const Form = ({
 
                 <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md"> 
                     <div className='flex items-center justify-between'> 
-                        <h2 className="text-stone-800 font-bold text-xl"> Education </h2>
+                        <h2 className="text-stone-800 font-bold text-2xl font-skillet italic"> Education </h2>
                         <button type="button"
                             onClick={() => toggleSection('educationInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -131,7 +131,7 @@ const Form = ({
                 {/* Experience Section  */}
                 <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
-                        <h2 className="text-stone-800 font-bold text-xl"> Work Experience </h2>
+                        <h2 className="text-stone-800 font-bold text-2xl font-skillet italic"> Work Experience </h2>
                         <button type="button"
                             onClick={() => toggleSection('experienceInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">
@@ -168,9 +168,9 @@ const Form = ({
                 </section>
 
                 {/* Project Section */}
-                <section className="bg-white border-lime-900 rounded-lg p-6 mb-4 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
+                <section className="bg-white border-lime-900 rounded-lg p-6 mb-8 border-3 border-gray-700 w-full max-w-4xl mt-4 mx-auto shadow-md">
                     <div className='flex items-center justify-between'>
-                        <h2 className="text-stone-800 font-bold text-xl"> Projects </h2>
+                        <h2 className="text-stone-800 font-bold text-2xl font-skillet italic"> Projects </h2>
                         <button type="button"
                             onClick={() => toggleSection('projectInfo')}
                             className="flex text-lg font-semibold text-gray-700 bg-white rounded px-3 py-2 flex items-center justify-center">

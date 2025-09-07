@@ -7,14 +7,14 @@ const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updat
                 value={experienceInfo.position}
                 name="position"
                 onChange={(e) => updateExperienceInfo(e, expIndex)}
-                className="rounded-md px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
+                className="rounded-md font-inter px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
         
             <input type='text'
                 placeholder='Company Name'
                 value={experienceInfo.company}
                 name="company"
                 onChange={(e) => updateExperienceInfo(e, expIndex)}
-                className="rounded-md px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
+                className="rounded-md font-inter px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
         
             <div className='flex flex-row gap-2'>  
                 <input type='text'
@@ -22,14 +22,14 @@ const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updat
                 value={experienceInfo.period}
                 name="period"
                 onChange={(e) => updateExperienceInfo(e, expIndex)}
-                className="rounded-md px-4 py-2 w-1/2 bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
+                className="rounded-md font-inter px-4 py-2 w-1/2 bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
             
                 <input type='text'
                 placeholder="Company Location"
                 value={experienceInfo.companyLoc}
                 name="companyLoc"
                 onChange={(e) => updateExperienceInfo(e, expIndex)}
-                className="rounded-md px-4 py-2 w-1/2 bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
+                className="rounded-md font-inter px-4 py-2 w-1/2 bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
             </div>
 
             <div className="flex gap-2"> 
@@ -38,7 +38,7 @@ const ExperienceSection = ({experienceInfo, addRole, deleteRole, expIndex, updat
                     value={experienceInfo.inputRole}
                     name="inputRole"
                     onChange={(e) => updateExperienceInfo(e, expIndex)}
-                    className="rounded-md px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
+                    className="rounded-md font-inter px-4 py-2 w-full bg-stone-100 border border-lime-900 focus:ring-lime-600 text-stone-800 transition"/>
                     
                 <button type="button"
                 onClick={() => addRole(expIndex)}

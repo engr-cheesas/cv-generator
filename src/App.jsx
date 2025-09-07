@@ -3,6 +3,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import Form from './components/Form'; 
 import CVPreview from './components/CVPreview';
 import CVDocument from './components/CVDocument'; 
+import Navbar from './components/Navbar';
 import useFormData from './hooks/useFormData';
 import mergePlaceholder from './utils/mergePlaceholder';
 import { placeholderData } from './utils/placeholderData';
@@ -40,14 +41,25 @@ function App () {
     return ( 
         // Root container for the application
         <div className={`flex flex-col items-center min-h-screen pt-10 transition-colors duration-300 ${
-            !isEditing ? 'bg-amber-900' : 'bg-stone-100'
+            !isEditing ? 'bg-[#f2ece5]' : 'bg-[#e5f5e0]'
         }`}>
+
+            <Navbar />
+
+            {/* <div className="mb-5 mt-15 text-center">
+                <h1 className="font-skillet text-3xl leading-snug tracking-wide text-green-800">
+                    Because your <span className="text-amber-600 italic">first impression</span>
+                    <br />
+                    shouldn't look like your <span className="text-brown-600 underline">first draft.</span>
+                </h1>
+            </div> */}
+
         
             {/* Buttons */}
-            <div className="flex gap-10 mb-4">
+            <div className="flex gap-10 mb-4 mt-10">
                 <button
                     onClick={handleEditSave}
-                    className="bg-amber-600 text-white w-50 px-4 py-4 rounded hover:bg-amber-400 transition-colors"
+                    className="bg-lime-900 hover:bg-lime-700 text-white w-50 px-4 py-4 rounded-lg transition-colors"
                 >
                     {isEditing ? 'Save' : 'Edit'}
                 </button>
@@ -58,7 +70,7 @@ function App () {
                     document={<CVDocument safeFormData={safeFormData} />}
                     fileName="cv.pdf"
                 >
-                    <button className="bg-lime-900 text-white w-50 px-4 py-4 rounded hover:bg-lime-600 transition-colors">
+                    <button className="bg-brown hover:bg-amber-400 text-white w-50 px-4 py-4 rounded-lg transition-colors">
                         Download PDF
                     </button>
                 </PDFDownloadLink>
