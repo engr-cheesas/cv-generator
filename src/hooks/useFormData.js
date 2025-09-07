@@ -1,8 +1,13 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 function useFormData() {
 
-    const [formData, setFormData] =useState({
+    const [formData, setFormData] =useState(() => {
+
+        const saved = localStorage.getItem("formData")
+        return saved 
+            ? JSON.parse(saved)
+            : {
             profSummary: {
                 summary: ""
             },
@@ -37,13 +42,18 @@ function useFormData() {
                 projectDef: [], 
                 inputDef: ""
             }]
-        })
+        }
+    })
 
-        const updateSummary = (e) => {
-        setFormData({
-            ...formData, profSummary: {
-                ...formData.profSummary, [e.target.name] : e.target.value
-            }})
+    useEffect(() => {
+        localStorage.setItem("formData", JSON.stringify(formData))
+    }, [formData])
+
+    const updateSummary = (e) => {
+    setFormData({
+        ...formData, profSummary: {
+            ...formData.profSummary, [e.target.name] : e.target.value
+        }})
     }
 
     const updatePersonalInfo = (e) => {

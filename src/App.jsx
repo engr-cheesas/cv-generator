@@ -35,6 +35,9 @@ function App () {
     const [isEditing, setIsEditing] = useState(true) // true: edit mode, false: preview mode
 
     const handleEditSave = () => {
+        if (isEditing) {
+            localStorage.setItem("formData", JSON.stringify(formData))
+        }
         setIsEditing(!isEditing)
     }
 
